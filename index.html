@@ -1,0 +1,3522 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDM All-In-One Register | एमडीएम ऑल-इन-वन रजिस्टर — MGGS AARNI</title>
+
+  <!-- Google Fonts: Noto Sans Devanagari + Inter for crisp Hindi & English rendering -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans Devanagari"', '"Inter"', 'sans-serif'],
+            mono: ['"Inter"', 'monospace']
+          },
+          colors: {
+            saffron: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e'
+            },
+            govblue: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              700: '#1d4ed8',
+              800: '#1e3a8a',
+              900: '#172554'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Base typography & scrollbars */
+    body {
+      font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Custom subtle scrollbars for wide register tables */
+    .table-scroll::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    .table-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 6px;
+    }
+    .table-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 6px;
+    }
+    .table-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Register table cell styling */
+    .reg-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .reg-table th,
+    .reg-table td {
+      border: 1px solid #cbd5e1;
+      padding: 4px 6px;
+      font-size: 0.78rem;
+      line-height: 1.25;
+      vertical-align: middle;
+    }
+    .reg-table thead th {
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Clean inline editable inputs inside tables */
+    .cell-input {
+      width: 100%;
+      min-width: 44px;
+      background-color: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 4px;
+      padding: 2px 4px;
+      text-align: center;
+      font-weight: 600;
+      color: #0f172a;
+      transition: all 0.15s ease;
+    }
+    .cell-input:focus {
+      outline: none;
+      background-color: #ffffff;
+      border-color: #1e3a8a;
+      box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.18);
+    }
+    .cell-input-text {
+      text-align: left;
+      min-width: 115px;
+    }
+    .cell-select {
+      background-color: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 4px;
+      padding: 2px 3px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .cell-select:focus {
+      outline: none;
+      border-color: #1e3a8a;
+    }
+
+    /* Remove number input spinners for cleaner register look */
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+
+    /* Sticky first column for mobile horizontal table scrolling */
+    .sticky-col {
+      position: sticky;
+      left: 0;
+      z-index: 10;
+    }
+
+    /* Official A4 Print Styling */
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 8mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10px !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .print-container {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      .table-scroll {
+        overflow: visible !important;
+        max-height: none !important;
+      }
+      .reg-table th,
+      .reg-table td {
+        border: 1px solid #1e293b !important;
+        padding: 2px 3px !important;
+        font-size: 9px !important;
+        color: #000000 !important;
+      }
+      .cell-input,
+      .cell-select {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        font-weight: 600 !important;
+        color: #000000 !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+      }
+      .sticky-col {
+        position: static !important;
+      }
+    }
+  </style>
+
+  <style id="offline-fallback-utilities">
+    /* Offline fallback styles if CDN is unreachable */
+    .hidden { display: none; }
+    .flex { display: flex; }
+    .inline-flex { display: inline-flex; }
+    .grid { display: grid; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-1 { flex: 1 1 0%; }
+    .shrink-0 { flex-shrink: 0; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .items-end { align-items: flex-end; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .justify-end { justify-content: flex-end; }
+    .gap-1\.5 { gap: 0.375rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-2\.5 { gap: 0.625rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .w-full { width: 100%; }
+    .min-h-screen { min-height: 100vh; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .font-bold { font-weight: 700; }
+    .font-extrabold { font-weight: 800; }
+    .font-semibold { font-weight: 600; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-full { border-radius: 9999px; }
+    .overflow-x-auto { overflow-x: auto; }
+    .overflow-hidden { overflow-hidden: hidden; }
+    .bg-white { background-color: #ffffff; }
+    .text-white { color: #ffffff; }
+    header.no-print { background: linear-gradient(90deg, #172554, #1e3a8a, #064e3b); color: #ffffff; }
+  </style>
+
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Government Ribbon & Action Bar -->
+  <header class="no-print bg-gradient-to-r from-govblue-900 via-govblue-800 to-emerald-900 text-white shadow-lg sticky top-0 z-30">
+    <div class="max-w-[1600px] mx-auto px-3 sm:px-6 py-3">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+        <!-- Brand & School Identity -->
+        <div class="flex items-start sm:items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-400 to-saffron-600 flex items-center justify-center text-govblue-950 font-extrabold text-lg shadow-md shrink-0 border border-amber-200">
+            MDM
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white">
+                MDM All-In-One Register <span class="text-amber-300 font-bold">(एमडीएम ऑल-इन-वन रजिस्टर)</span>
+              </h1>
+              <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-400/30">
+                PM POSHAN & बाल गोपाल योजना
+              </span>
+            </div>
+            <p id="headerSchoolSubtitle" class="text-xs sm:text-sm text-indigo-100 mt-0.5">
+              महात्मा गांधी राजकीय विद्यालय आरनी (MGGS AARNI) • UDISE: 8290103401 • माह: अक्टूबर 2026-27
+            </p>
+          </div>
+        </div>
+
+        <!-- Primary Action Buttons -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="openQuickEntryModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-md transition active:scale-95">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            <span>आज की एंट्री (Quick Daily Entry)</span>
+          </button>
+
+          <button onclick="openSettingsModal()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>विद्यालय सेटिंग्स</span>
+          </button>
+
+          <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm shadow transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <span>प्रिंट प्रपत्र</span>
+          </button>
+
+          <button onclick="openBackupModal()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>बैकअप / रीसेट</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 7-Tab Navigation Bar -->
+      <nav id="tabNav" class="mt-3 pt-2.5 border-t border-white/15 flex items-center gap-1.5 overflow-x-auto pb-1">
+        <!-- Tabs injected dynamically -->
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-[1600px] w-full mx-auto px-3 sm:px-6 py-4 sm:py-6 print-container">
+    <div id="appContent"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="no-print bg-white border-t border-slate-200 py-3 px-4 text-center text-xs text-slate-500">
+    MDM All-In-One Digital Register • राजस्थान सरकार (PM POSHAN एवं मुख्यमंत्री बाल गोपाल दुग्ध वितरण योजना) • ऑटो-सेव सक्रिय (LocalStorage)
+  </footer>
+
+  <!-- Toast Notification Banner -->
+  <div id="toastBanner" class="no-print fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-slate-700 flex items-center gap-2.5 text-sm font-medium">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+      <span id="toastMessage">डेटा सफलतापूर्वक सेव हो गया!</span>
+    </div>
+  </div>
+
+  <!-- MODAL 1: Quick Daily Entry (आज की एंट्री) -->
+  <div id="quickEntryModal" class="no-print fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-2xl overflow-hidden my-auto">
+      <div class="bg-gradient-to-r from-amber-500 to-saffron-600 px-5 py-4 text-slate-950 flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-extrabold">आज की एंट्री (Quick Daily Entry)</h2>
+          <p class="text-xs font-medium text-amber-950">एक ही बार में पोषाहार (1-5 & 6-8), दुग्ध योजना, खाद्यान्न, राशि व MDCF अपडेट करें</p>
+        </div>
+        <button onclick="closeModal('quickEntryModal')" class="p-1.5 rounded-lg bg-black/10 hover:bg-black/20 text-slate-950 font-bold">✕</button>
+      </div>
+      <div id="quickEntryModalBody" class="p-5 max-h-[82vh] overflow-y-auto"></div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: Global School & Norm Settings -->
+  <div id="settingsModal" class="no-print fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-3xl overflow-hidden my-auto">
+      <div class="bg-govblue-900 px-5 py-4 text-white flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-bold">विद्यालय एवं योजना दर सेटिंग्स (School & Norm Rates)</h2>
+          <p class="text-xs text-indigo-200">परिवर्तन करते ही सभी 6 रजिस्टरों की गणना स्वतः अपडेट हो जाएगी</p>
+        </div>
+        <button onclick="closeModal('settingsModal')" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold">✕</button>
+      </div>
+      <div id="settingsModalBody" class="p-5 max-h-[82vh] overflow-y-auto"></div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: Backup / Export CSV & JSON / Reset -->
+  <div id="backupModal" class="no-print fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-xl overflow-hidden my-auto">
+      <div class="bg-slate-800 px-5 py-4 text-white flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-bold">डेटा बैकअप, एक्सेल (CSV) एवं रीसेट</h2>
+          <p class="text-xs text-slate-300">मासिक रजिस्टर सुरक्षित रखें या MGGS AARNI के सैंपल डेटा पर रीसेट करें</p>
+        </div>
+        <button onclick="closeModal('backupModal')" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold">✕</button>
+      </div>
+      <div id="backupModalBody" class="p-5 space-y-4"></div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * ============================================================================
+     * MDM ALL-IN-ONE REGISTER (एमडीएम ऑल-इन-वन रजिस्टर)
+     * Comprehensive state, live formula engine, localStorage persistence, & UI
+     * ============================================================================
+     */
+
+    const STORAGE_KEY = 'mdm_all_in_one_mggs_aarni_v1';
+
+    const TABS = [
+      { id: 'dashboard', label: '1. डैशबोर्ड', sub: 'Overview & Entry' },
+      { id: 'milk', label: '2. दुग्ध वितरण एवं स्टॉक', sub: 'बाल गोपाल योजना' },
+      { id: 'poshahar15', label: '3. दैनिक पोषाहार (1-5)', sub: 'Primary Register' },
+      { id: 'poshahar68', label: '4. दैनिक पोषाहार (6-8)', sub: 'Upper Primary' },
+      { id: 'khadyanna', label: '5. खाद्यान्न प्रपत्र', sub: 'नोडलवार एकजाई' },
+      { id: 'rashi', label: '6. राशि प्रपत्र', sub: 'कुकिंग व कुक-हेल्पर' },
+      { id: 'mdcf', label: '7. PM POSHAN MDCF', sub: 'Monthly Capture' }
+    ];
+
+    const WEEKDAYS = [
+      'सोमवार',
+      'मंगलवार',
+      'बुधवार',
+      'गुरुवार',
+      'शुक्रवार',
+      'शनिवार',
+      'रविवार',
+      'अवकाश'
+    ];
+
+    /**
+     * Returns the exact default October weekday schedule (Date 1 = Sunday, Date 2 = Monday, Holidays on 11 & 25)
+     */
+    function getDefaultOctoberSchedule() {
+      const cycle = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
+      const days = [];
+      for (let d = 1; d <= 31; d++) {
+        let dayName = cycle[(d - 1) % 7];
+        if (d === 11 || d === 25) {
+          dayName = 'अवकाश';
+        }
+        days.push(dayName);
+      }
+      return days;
+    }
+
+    /**
+     * Determines daily menu automatically from weekday name
+     */
+    function getMenuForWeekday(dayName) {
+      if (dayName === 'रविवार' || dayName === 'अवकाश') return 'अवकाश';
+      if (dayName === 'मंगलवार') return 'चावल-दाल-सब्जी';
+      if (dayName === 'गुरुवार') return 'खिचड़ी (दाल चावल सब्जी युक्त)';
+      return 'रोटी-सब्जी-दाल';
+    }
+
+    /**
+     * Checks grain type used on a given weekday ('wheat' | 'rice' | 'none')
+     */
+    function getGrainTypeForWeekday(dayName) {
+      if (dayName === 'रविवार' || dayName === 'अवकाश') return 'none';
+      if (dayName === 'मंगलवार' || dayName === 'गुरुवार') return 'rice';
+      return 'wheat';
+    }
+
+    /**
+     * Builds the exact pre-filled sample dataset for MGGS AARNI (October 2026-27)
+     */
+    function createInitialState() {
+      const schedule = getDefaultOctoberSchedule();
+
+      // Milk Distribution 31 days (Day 1 Opening = 37.475 kg)
+      const milkDays = Array.from({ length: 31 }, (_, idx) => ({
+        date: idx + 1,
+        stu15: 0,
+        stu68: 0,
+        receivedKg: 0
+      }));
+
+      // Poshahar Class 1-5 (Opening Wheat = 36.35, Opening Rice = 9.75; Date 2 Boys=10, Girls=5)
+      const poshahar15Days = Array.from({ length: 31 }, (_, idx) => {
+        const d = idx + 1;
+        return {
+          date: d,
+          dayName: schedule[idx],
+          boys: d === 2 ? 10 : 0,
+          girls: d === 2 ? 5 : 0,
+          wheatSupplied: 0,
+          wheatLoan: 0,
+          riceSupplied: 0,
+          riceLoan: 0
+        };
+      });
+
+      // Poshahar Class 6-8 (Opening Wheat = 153.14, Opening Rice = 78.26; Date 2 Boys=5, Girls=0)
+      const poshahar68Days = Array.from({ length: 31 }, (_, idx) => {
+        const d = idx + 1;
+        return {
+          date: d,
+          dayName: schedule[idx],
+          boys: d === 2 ? 5 : 0,
+          girls: 0,
+          wheatSupplied: 0,
+          wheatLoan: 0,
+          riceSupplied: 0,
+          riceLoan: 0
+        };
+      });
+
+      return {
+        activeTab: 'dashboard',
+        quickEntryDate: 3,
+        settings: {
+          schoolNameEn: 'MGGS AARNI',
+          schoolNameHi: 'महात्मा गांधी राजकीय विद्यालय आरनी',
+          udise: '8290103401',
+          blockEn: 'RASHMI',
+          blockHi: 'राशमी',
+          district: 'CHITTORGARH',
+          state: 'RAJASTHAN',
+          village: 'AARNI',
+          nodalName: 'आरनी',
+          monthHi: 'अक्टूबर',
+          monthEn: 'October',
+          session: '2026-27',
+          calendarYear: '2026',
+          schoolType: 'Government',
+          schoolCategory: 'Primary with Upper Primary',
+          kitchenType: 'Pucca Kitchen Shed',
+          implementingAgency: 'School Management Committee (SMC)',
+          enrol15: 74,
+          enrol68: 18,
+          // Norm rates
+          cookCost15: 6.78,
+          cookCost68: 10.17,
+          milkPowder15: 15, // grams
+          milkPowder68: 20, // grams
+          sugar15: 8.4, // grams
+          sugar68: 10.2, // grams
+          sugarRate: 45, // Rs per kg
+          gas15: 0.45, // Rs per student
+          gas68: 0.60, // Rs per student
+          grain15: 0.1, // kg per student (100g)
+          grain68: 0.15 // kg per student (150g)
+        },
+        milk: {
+          day1OpeningKg: 37.475,
+          days: milkDays
+        },
+        poshahar15: {
+          openingWheat: 36.35,
+          openingRice: 9.75,
+          days: poshahar15Days
+        },
+        poshahar68: {
+          openingWheat: 153.14,
+          openingRice: 78.26,
+          days: poshahar68Days
+        },
+        // Khadyanna Prapatra (Sheet 5): Row 1 is live MGGS AARNI + baseReceived; Rows 2-7 editable nodal schools
+        khadyanna: {
+          mggsBaseReceived: {
+            wheat15: 100,
+            rice15: 0,
+            wheat68: 0,
+            rice68: 0
+          },
+          otherSchools: [
+            { id: 's2', name: 'GGSSS AARNI', enrol15: 0, enrol68: 0, days: 0, w15Open: 0, w15Rec: 0, w15Exp: 0, r15Open: 0, r15Rec: 0, r15Exp: 0, w68Open: 0, w68Rec: 0, w68Exp: 0, r68Open: 0, r68Rec: 0, r68Exp: 0, ben15: 0, ben68: 0 },
+            { id: 's3', name: 'UPS GOPALPURA', enrol15: 0, enrol68: 0, days: 0, w15Open: 0, w15Rec: 0, w15Exp: 0, r15Open: 0, r15Rec: 0, r15Exp: 0, w68Open: 0, w68Rec: 0, w68Exp: 0, r68Open: 0, r68Rec: 0, r68Exp: 0, ben15: 0, ben68: 0 },
+            { id: 's4', name: 'PS UTTAMPURA', enrol15: 0, enrol68: 0, days: 0, w15Open: 0, w15Rec: 0, w15Exp: 0, r15Open: 0, r15Rec: 0, r15Exp: 0, w68Open: 0, w68Rec: 0, w68Exp: 0, r68Open: 0, r68Rec: 0, r68Exp: 0, ben15: 0, ben68: 0 },
+            { id: 's5', name: '', enrol15: 0, enrol68: 0, days: 0, w15Open: 0, w15Rec: 0, w15Exp: 0, r15Open: 0, r15Rec: 0, r15Exp: 0, w68Open: 0, w68Rec: 0, w68Exp: 0, r68Open: 0, r68Rec: 0, r68Exp: 0, ben15: 0, ben68: 0 },
+            { id: 's6', name: '', enrol15: 0, enrol68: 0, days: 0, w15Open: 0, w15Rec: 0, w15Exp: 0, r15Open: 0, r15Rec: 0, r15Exp: 0, w68Open: 0, w68Rec: 0, w68Exp: 0, r68Open: 0, r68Rec: 0, r68Exp: 0, ben15: 0, ben68: 0 },
+            { id: 's7', name: '', enrol15: 0, enrol68: 0, days: 0, w15Open: 0, w15Rec: 0, w15Exp: 0, r15Open: 0, r15Rec: 0, r15Exp: 0, w68Open: 0, w68Rec: 0, w68Exp: 0, r68Open: 0, r68Rec: 0, r68Exp: 0, ben15: 0, ben68: 0 }
+          ]
+        },
+        // Rashi Prapatra (Sheet 6): Cooking Conversion & Cook-Cum-Helper
+        rashi: {
+          mggsCooking: {
+            open15: 6519.70,
+            rec15: 0,
+            open68: 17567.00,
+            rec68: 0
+          },
+          otherCookingSchools: [
+            { id: 'c2', name: 'GGSSS AARNI', open15: 0, rec15: 0, ben15: 0, exp15: 0, open68: 0, rec68: 0, ben68: 0, exp68: 0 },
+            { id: 'c3', name: 'UPS GOPALPURA', open15: 0, rec15: 0, ben15: 0, exp15: 0, open68: 0, rec68: 0, ben68: 0, exp68: 0 },
+            { id: 'c4', name: 'PS UTTAMPURA', open15: 0, rec15: 0, ben15: 0, exp15: 0, open68: 0, rec68: 0, ben68: 0, exp68: 0 },
+            { id: 'c5', name: '', open15: 0, rec15: 0, ben15: 0, exp15: 0, open68: 0, rec68: 0, ben68: 0, exp68: 0 }
+          ],
+          mggsCch: {
+            open: 27464.00,
+            rec: 0,
+            exp: 2467.00
+          },
+          otherCchSchools: [
+            { id: 'h2', name: 'GGSSS AARNI', open: 0, rec: 0, exp: 0 },
+            { id: 'h3', name: 'UPS GOPALPURA', open: 0, rec: 0, exp: 0 },
+            { id: 'h4', name: 'PS UTTAMPURA', open: 0, rec: 0, exp: 0 },
+            { id: 'h5', name: '', open: 0, rec: 0, exp: 0 }
+          ]
+        },
+        // PM POSHAN MDCF (Sheet 7)
+        mdcf: {
+          schoolDaysBv: 0,
+          schoolDaysPri: 22,
+          schoolDaysUpri: 22,
+          bvActualDays: 0,
+          bvMeals: 0,
+          bvFund: { open: 0, rec: 0, exp: 0 },
+          mmeFund: { open: 0, rec: 0, exp: 0 },
+          bankReconciled: 'Yes',
+          cooks: [
+            { id: 'ck1', name: 'Sawari', gender: 'F', category: 'OBC', paymentMode: 'Bank', amount: 2467 },
+            { id: 'ck2', name: 'Pooja sukhwal', gender: 'F', category: 'GEN', paymentMode: 'Bank', amount: 2467 }
+          ],
+          bvGrain: { open: 0, rec: 0, exp: 0 },
+          health: {
+            ifaBoys: 0,
+            ifaGirls: 0,
+            screenedRbsk: 0,
+            referredRbsk: 0
+          },
+          inspection: {
+            inspected: 'No',
+            taskForce: 0,
+            districtOfficials: 0,
+            blockOfficials: 0,
+            smcMembers: 0,
+            untowardIncidents: 0
+          }
+        }
+      };
+    }
+
+    // Load saved state or fallback to MGGS AARNI default sample
+    let appState = loadState();
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return createInitialState();
+        const parsed = JSON.parse(raw);
+        const base = createInitialState();
+        return {
+          ...base,
+          ...parsed,
+          settings: { ...base.settings, ...(parsed.settings || {}) },
+          milk: { ...base.milk, ...(parsed.milk || {}) },
+          poshahar15: { ...base.poshahar15, ...(parsed.poshahar15 || {}) },
+          poshahar68: { ...base.poshahar68, ...(parsed.poshahar68 || {}) },
+          khadyanna: { ...base.khadyanna, ...(parsed.khadyanna || {}) },
+          rashi: { ...base.rashi, ...(parsed.rashi || {}) },
+          mdcf: { ...base.mdcf, ...(parsed.mdcf || {}) }
+        };
+      } catch (e) {
+        console.error('Failed to load state from localStorage:', e);
+        return createInitialState();
+      }
+    }
+
+    function saveState(silent = false) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+        updateHeaderSubtitle();
+        if (!silent) {
+          showToast('परिवर्तन सुरक्षित किए गए (Auto-Saved)');
+        }
+      } catch (e) {
+        console.error('Failed to save state:', e);
+      }
+    }
+
+    /**
+     * Formatting Helpers
+     */
+    function roundTo(val, decimals = 2) {
+      const factor = Math.pow(10, decimals);
+      return Math.round((Number(val) + Number.EPSILON) * factor) / factor;
+    }
+
+    function fmtNum(val, decimals = 2) {
+      const n = Number(val) || 0;
+      return n.toLocaleString('en-IN', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+    }
+
+    function fmtQty(val) {
+      const n = roundTo(Number(val) || 0, 3);
+      return n.toString();
+    }
+
+    function fmtRs(val) {
+      const n = Number(val) || 0;
+      return '₹' + n.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function showToast(msg) {
+      const banner = document.getElementById('toastBanner');
+      const text = document.getElementById('toastMessage');
+      if (!banner || !text) return;
+      text.textContent = msg;
+      banner.classList.remove('translate-y-24', 'opacity-0');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        banner.classList.add('translate-y-24', 'opacity-0');
+      }, 2400);
+    }
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+
+    /**
+     * ============================================================================
+     * MASTER CALCULATION ENGINE
+     * Computes every chained row & cross-sheet summary in real time
+     * ============================================================================
+     */
+    function computeAllRegisters() {
+      const s = appState.settings;
+      const totalEnrolment = (Number(s.enrol15) || 0) + (Number(s.enrol68) || 0);
+
+      // 1. MILK DISTRIBUTION CALCULATIONS
+      let runningMilkStock = roundTo(Number(appState.milk.day1OpeningKg) || 0, 3);
+      let milkTotals = {
+        stu15: 0,
+        stu68: 0,
+        stuTotal: 0,
+        milkGrams15: 0,
+        milkGrams68: 0,
+        milkKgTotal: 0,
+        sugarGrams15: 0,
+        sugarGrams68: 0,
+        sugarKgTotal: 0,
+        milkReceivedKg: 0,
+        sugarCostTotal: 0,
+        gasCost15: 0,
+        gasCost68: 0,
+        gasCostTotal: 0,
+        activeDays: 0
+      };
+
+      const milkRows = appState.milk.days.map((row, idx) => {
+        const b = Number(row.stu15) || 0;
+        const c = Number(row.stu68) || 0;
+        const totStu = b + c;
+        const mGrams15 = roundTo(b * (Number(s.milkPowder15) || 15), 1);
+        const mGrams68 = roundTo(c * (Number(s.milkPowder68) || 20), 1);
+        const mKg = roundTo((mGrams15 + mGrams68) / 1000, 3);
+
+        const sGrams15 = roundTo(b * (Number(s.sugar15) || 8.4), 1);
+        const sGrams68 = roundTo(c * (Number(s.sugar68) || 10.2), 1);
+        const sKg = roundTo((sGrams15 + sGrams68) / 1000, 3);
+
+        const opening = runningMilkStock;
+        const received = roundTo(Number(row.receivedKg) || 0, 3);
+        const closing = roundTo(opening + received - mKg, 3);
+        runningMilkStock = closing;
+
+        const sugarRs = roundTo(sKg * (Number(s.sugarRate) || 45), 2);
+        const gas15Rs = roundTo(b * (Number(s.gas15) || 0.45), 2);
+        const gas68Rs = roundTo(c * (Number(s.gas68) || 0.60), 2);
+        const gasTotRs = roundTo(gas15Rs + gas68Rs, 2);
+
+        if (totStu > 0) milkTotals.activeDays += 1;
+        milkTotals.stu15 += b;
+        milkTotals.stu68 += c;
+        milkTotals.stuTotal += totStu;
+        milkTotals.milkGrams15 = roundTo(milkTotals.milkGrams15 + mGrams15, 1);
+        milkTotals.milkGrams68 = roundTo(milkTotals.milkGrams68 + mGrams68, 1);
+        milkTotals.milkKgTotal = roundTo(milkTotals.milkKgTotal + mKg, 3);
+        milkTotals.sugarGrams15 = roundTo(milkTotals.sugarGrams15 + sGrams15, 1);
+        milkTotals.sugarGrams68 = roundTo(milkTotals.sugarGrams68 + sGrams68, 1);
+        milkTotals.sugarKgTotal = roundTo(milkTotals.sugarKgTotal + sKg, 3);
+        milkTotals.milkReceivedKg = roundTo(milkTotals.milkReceivedKg + received, 3);
+        milkTotals.sugarCostTotal = roundTo(milkTotals.sugarCostTotal + sugarRs, 2);
+        milkTotals.gasCost15 = roundTo(milkTotals.gasCost15 + gas15Rs, 2);
+        milkTotals.gasCost68 = roundTo(milkTotals.gasCost68 + gas68Rs, 2);
+        milkTotals.gasCostTotal = roundTo(milkTotals.gasCostTotal + gasTotRs, 2);
+
+        return {
+          ...row,
+          dayName: appState.poshahar15.days[idx]?.dayName || '',
+          b,
+          c,
+          totStu,
+          mGrams15,
+          mGrams68,
+          mKg,
+          sGrams15,
+          sGrams68,
+          sKg,
+          opening,
+          received,
+          closing,
+          sugarRs,
+          gas15Rs,
+          gas68Rs,
+          gasTotRs
+        };
+      });
+
+      const milkClosingStock = runningMilkStock;
+
+      // 2. POSHAHAR CLASS 1-5 CALCULATIONS
+      function computePoshaharSheet(sheetData, grainNormKg) {
+        let runWheat = roundTo(Number(sheetData.openingWheat) || 0, 3);
+        let runRice = roundTo(Number(sheetData.openingRice) || 0, 3);
+
+        const totals = {
+          boys: 0,
+          girls: 0,
+          students: 0,
+          wheatSupplied: 0,
+          wheatLoan: 0,
+          wheatExp: 0,
+          riceSupplied: 0,
+          riceLoan: 0,
+          riceExp: 0,
+          activeDays: 0
+        };
+
+        const rows = sheetData.days.map((row) => {
+          const boys = Number(row.boys) || 0;
+          const girls = Number(row.girls) || 0;
+          const totalStu = boys + girls;
+          const menu = getMenuForWeekday(row.dayName);
+          const grainType = getGrainTypeForWeekday(row.dayName);
+
+          const wOpen = runWheat;
+          const wSup = roundTo(Number(row.wheatSupplied) || 0, 3);
+          const wLoan = roundTo(Number(row.wheatLoan) || 0, 3);
+          const wAvail = roundTo(wOpen + wSup + wLoan, 3);
+          const wExp = grainType === 'wheat' ? roundTo(totalStu * grainNormKg, 3) : 0;
+          const wClose = roundTo(wAvail - wExp, 3);
+          runWheat = wClose;
+
+          const rOpen = runRice;
+          const rSup = roundTo(Number(row.riceSupplied) || 0, 3);
+          const rLoan = roundTo(Number(row.riceLoan) || 0, 3);
+          const rAvail = roundTo(rOpen + rSup + rLoan, 3);
+          const rExp = grainType === 'rice' ? roundTo(totalStu * grainNormKg, 3) : 0;
+          const rClose = roundTo(rAvail - rExp, 3);
+          runRice = rClose;
+
+          if (totalStu > 0) totals.activeDays += 1;
+          totals.boys += boys;
+          totals.girls += girls;
+          totals.students += totalStu;
+          totals.wheatSupplied = roundTo(totals.wheatSupplied + wSup, 3);
+          totals.wheatLoan = roundTo(totals.wheatLoan + wLoan, 3);
+          totals.wheatExp = roundTo(totals.wheatExp + wExp, 3);
+          totals.riceSupplied = roundTo(totals.riceSupplied + rSup, 3);
+          totals.riceLoan = roundTo(totals.riceLoan + rLoan, 3);
+          totals.riceExp = roundTo(totals.riceExp + rExp, 3);
+
+          return {
+            ...row,
+            boys,
+            girls,
+            totalStu,
+            menu,
+            grainType,
+            wOpen,
+            wSup,
+            wLoan,
+            wAvail,
+            wExp,
+            wClose,
+            rOpen,
+            rSup,
+            rLoan,
+            rAvail,
+            rExp,
+            rClose
+          };
+        });
+
+        return {
+          rows,
+          totals,
+          closingWheat: runWheat,
+          closingRice: runRice
+        };
+      }
+
+      const p15 = computePoshaharSheet(appState.poshahar15, Number(s.grain15) || 0.1);
+      const p68 = computePoshaharSheet(appState.poshahar68, Number(s.grain68) || 0.15);
+
+      // 3. KHADYANNA PRAPATRA (SHEET 5) & OVERALL SCHOOL GRAIN STOCK
+      const activeMdmDays = Math.max(p15.totals.activeDays, p68.totals.activeDays);
+      const baseRec = appState.khadyanna.mggsBaseReceived;
+
+      const mggsWheat15Open = roundTo(Number(appState.poshahar15.openingWheat) || 0, 3);
+      const mggsWheat15Rec = roundTo((Number(baseRec.wheat15) || 0) + p15.totals.wheatSupplied + p15.totals.wheatLoan, 3);
+      const mggsWheat15Avail = roundTo(mggsWheat15Open + mggsWheat15Rec, 3);
+      const mggsWheat15Exp = p15.totals.wheatExp;
+      const mggsWheat15Close = roundTo(mggsWheat15Avail - mggsWheat15Exp, 3);
+
+      const mggsRice15Open = roundTo(Number(appState.poshahar15.openingRice) || 0, 3);
+      const mggsRice15Rec = roundTo((Number(baseRec.rice15) || 0) + p15.totals.riceSupplied + p15.totals.riceLoan, 3);
+      const mggsRice15Avail = roundTo(mggsRice15Open + mggsRice15Rec, 3);
+      const mggsRice15Exp = p15.totals.riceExp;
+      const mggsRice15Close = roundTo(mggsRice15Avail - mggsRice15Exp, 3);
+
+      const mggsWheat68Open = roundTo(Number(appState.poshahar68.openingWheat) || 0, 3);
+      const mggsWheat68Rec = roundTo((Number(baseRec.wheat68) || 0) + p68.totals.wheatSupplied + p68.totals.wheatLoan, 3);
+      const mggsWheat68Avail = roundTo(mggsWheat68Open + mggsWheat68Rec, 3);
+      const mggsWheat68Exp = p68.totals.wheatExp;
+      const mggsWheat68Close = roundTo(mggsWheat68Avail - mggsWheat68Exp, 3);
+
+      const mggsRice68Open = roundTo(Number(appState.poshahar68.openingRice) || 0, 3);
+      const mggsRice68Rec = roundTo((Number(baseRec.rice68) || 0) + p68.totals.riceSupplied + p68.totals.riceLoan, 3);
+      const mggsRice68Avail = roundTo(mggsRice68Open + mggsRice68Rec, 3);
+      const mggsRice68Exp = p68.totals.riceExp;
+      const mggsRice68Close = roundTo(mggsRice68Avail - mggsRice68Exp, 3);
+
+      const mggsKhadyannaRow = {
+        isPrimary: true,
+        name: s.schoolNameEn,
+        enrol15: Number(s.enrol15) || 0,
+        enrol68: Number(s.enrol68) || 0,
+        enrolTot: totalEnrolment,
+        days: activeMdmDays,
+        w15Open: mggsWheat15Open,
+        w15Rec: mggsWheat15Rec,
+        w15Avail: mggsWheat15Avail,
+        w15Exp: mggsWheat15Exp,
+        w15Close: mggsWheat15Close,
+        r15Open: mggsRice15Open,
+        r15Rec: mggsRice15Rec,
+        r15Avail: mggsRice15Avail,
+        r15Exp: mggsRice15Exp,
+        r15Close: mggsRice15Close,
+        w68Open: mggsWheat68Open,
+        w68Rec: mggsWheat68Rec,
+        w68Avail: mggsWheat68Avail,
+        w68Exp: mggsWheat68Exp,
+        w68Close: mggsWheat68Close,
+        r68Open: mggsRice68Open,
+        r68Rec: mggsRice68Rec,
+        r68Avail: mggsRice68Avail,
+        r68Exp: mggsRice68Exp,
+        r68Close: mggsRice68Close,
+        ben15: p15.totals.students,
+        ben68: p68.totals.students,
+        benTot: p15.totals.students + p68.totals.students
+      };
+
+      const nodalKhadyannaRows = [
+        mggsKhadyannaRow,
+        ...appState.khadyanna.otherSchools.map((r) => {
+          const e15 = Number(r.enrol15) || 0;
+          const e68 = Number(r.enrol68) || 0;
+          const w15Avail = roundTo((Number(r.w15Open) || 0) + (Number(r.w15Rec) || 0), 3);
+          const w15Close = roundTo(w15Avail - (Number(r.w15Exp) || 0), 3);
+          const r15Avail = roundTo((Number(r.r15Open) || 0) + (Number(r.r15Rec) || 0), 3);
+          const r15Close = roundTo(r15Avail - (Number(r.r15Exp) || 0), 3);
+          const w68Avail = roundTo((Number(r.w68Open) || 0) + (Number(r.w68Rec) || 0), 3);
+          const w68Close = roundTo(w68Avail - (Number(r.w68Exp) || 0), 3);
+          const r68Avail = roundTo((Number(r.r68Open) || 0) + (Number(r.r68Rec) || 0), 3);
+          const r68Close = roundTo(r68Avail - (Number(r.r68Exp) || 0), 3);
+          const b15 = Number(r.ben15) || 0;
+          const b68 = Number(r.ben68) || 0;
+          return {
+            ...r,
+            isPrimary: false,
+            enrol15: e15,
+            enrol68: e68,
+            enrolTot: e15 + e68,
+            w15Avail,
+            w15Close,
+            r15Avail,
+            r15Close,
+            w68Avail,
+            w68Close,
+            r68Avail,
+            r68Close,
+            ben15: b15,
+            ben68: b68,
+            benTot: b15 + b68
+          };
+        })
+      ];
+
+      // 4. RASHI PRAPATRA (SHEET 6): COOKING CONVERSION & CCH
+      const mc = appState.rashi.mggsCooking;
+      const mggsCookOpen15 = roundTo(Number(mc.open15) || 0, 2);
+      const mggsCookRec15 = roundTo(Number(mc.rec15) || 0, 2);
+      const mggsCookTot15 = roundTo(mggsCookOpen15 + mggsCookRec15, 2);
+      const mggsCookExp15 = roundTo(p15.totals.students * (Number(s.cookCost15) || 6.78), 2);
+      const mggsCookClose15 = roundTo(mggsCookTot15 - mggsCookExp15, 2);
+
+      const mggsCookOpen68 = roundTo(Number(mc.open68) || 0, 2);
+      const mggsCookRec68 = roundTo(Number(mc.rec68) || 0, 2);
+      const mggsCookTot68 = roundTo(mggsCookOpen68 + mggsCookRec68, 2);
+      const mggsCookExp68 = roundTo(p68.totals.students * (Number(s.cookCost68) || 10.17), 2);
+      const mggsCookClose68 = roundTo(mggsCookTot68 - mggsCookExp68, 2);
+      const mggsCookCombinedClose = roundTo(mggsCookClose15 + mggsCookClose68, 2);
+
+      const cookingRows = [
+        {
+          isPrimary: true,
+          name: s.schoolNameEn,
+          open15: mggsCookOpen15,
+          rec15: mggsCookRec15,
+          tot15: mggsCookTot15,
+          ben15: p15.totals.students,
+          exp15: mggsCookExp15,
+          close15: mggsCookClose15,
+          open68: mggsCookOpen68,
+          rec68: mggsCookRec68,
+          tot68: mggsCookTot68,
+          ben68: p68.totals.students,
+          exp68: mggsCookExp68,
+          close68: mggsCookClose68,
+          combinedClose: mggsCookCombinedClose
+        },
+        ...appState.rashi.otherCookingSchools.map((r) => {
+          const open15 = roundTo(Number(r.open15) || 0, 2);
+          const rec15 = roundTo(Number(r.rec15) || 0, 2);
+          const tot15 = roundTo(open15 + rec15, 2);
+          const exp15 = roundTo(Number(r.exp15) || 0, 2);
+          const close15 = roundTo(tot15 - exp15, 2);
+
+          const open68 = roundTo(Number(r.open68) || 0, 2);
+          const rec68 = roundTo(Number(r.rec68) || 0, 2);
+          const tot68 = roundTo(open68 + rec68, 2);
+          const exp68 = roundTo(Number(r.exp68) || 0, 2);
+          const close68 = roundTo(tot68 - exp68, 2);
+
+          return {
+            ...r,
+            isPrimary: false,
+            open15,
+            rec15,
+            tot15,
+            ben15: Number(r.ben15) || 0,
+            exp15,
+            close15,
+            open68,
+            rec68,
+            tot68,
+            ben68: Number(r.ben68) || 0,
+            exp68,
+            close68,
+            combinedClose: roundTo(close15 + close68, 2)
+          };
+        })
+      ];
+
+      const mh = appState.rashi.mggsCch;
+      const mggsCchOpen = roundTo(Number(mh.open) || 0, 2);
+      const mggsCchRec = roundTo(Number(mh.rec) || 0, 2);
+      const mggsCchTot = roundTo(mggsCchOpen + mggsCchRec, 2);
+      const mggsCchExp = roundTo(Number(mh.exp) || 0, 2);
+      const mggsCchClose = roundTo(mggsCchTot - mggsCchExp, 2);
+
+      const cchRows = [
+        {
+          isPrimary: true,
+          name: s.schoolNameEn,
+          open: mggsCchOpen,
+          rec: mggsCchRec,
+          tot: mggsCchTot,
+          exp: mggsCchExp,
+          close: mggsCchClose
+        },
+        ...appState.rashi.otherCchSchools.map((r) => {
+          const open = roundTo(Number(r.open) || 0, 2);
+          const rec = roundTo(Number(r.rec) || 0, 2);
+          const tot = roundTo(open + rec, 2);
+          const exp = roundTo(Number(r.exp) || 0, 2);
+          return {
+            ...r,
+            isPrimary: false,
+            open,
+            rec,
+            tot,
+            exp,
+            close: roundTo(tot - exp, 2)
+          };
+        })
+      ];
+
+      return {
+        totalEnrolment,
+        milkRows,
+        milkTotals,
+        milkClosingStock,
+        p15,
+        p68,
+        activeMdmDays,
+        mggsKhadyannaRow,
+        nodalKhadyannaRows,
+        cookingRows,
+        cchRows
+      };
+    }
+
+    /**
+     * ============================================================================
+     * NAVIGATION & HEADER UPDATES
+     * ============================================================================
+     */
+    function updateHeaderSubtitle() {
+      const s = appState.settings;
+      const el = document.getElementById('headerSchoolSubtitle');
+      if (el) {
+        el.textContent = `${s.schoolNameHi} (${s.schoolNameEn}) • UDISE: ${s.udise} • ब्लॉक: ${s.blockHi} • माह: ${s.monthHi} ${s.session}`;
+      }
+    }
+
+    function renderTabs() {
+      const nav = document.getElementById('tabNav');
+      if (!nav) return;
+      nav.innerHTML = TABS.map((tab) => {
+        const active = appState.activeTab === tab.id;
+        return `
+          <button
+            onclick="switchTab('${tab.id}')"
+            class="shrink-0 px-3 py-1.5 rounded-xl text-left transition flex flex-col border ${
+              active
+                ? 'bg-white text-govblue-900 border-white shadow-sm font-bold'
+                : 'bg-white/10 hover:bg-white/20 text-white border-transparent font-medium'
+            }"
+          >
+            <span class="text-xs sm:text-[13px] leading-tight">${tab.label}</span>
+            <span class="text-[10px] ${active ? 'text-amber-700 font-semibold' : 'text-indigo-200'}">${tab.sub}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function switchTab(tabId) {
+      appState.activeTab = tabId;
+      saveState(true);
+      renderTabs();
+      renderApp();
+    }
+
+    /**
+     * ============================================================================
+     * MAIN VIEW ROUTER
+     * ============================================================================
+     */
+    function renderApp() {
+      const calc = computeAllRegisters();
+      const container = document.getElementById('appContent');
+      if (!container) return;
+
+      switch (appState.activeTab) {
+        case 'dashboard':
+          container.innerHTML = renderDashboardView(calc);
+          break;
+        case 'milk':
+          container.innerHTML = renderMilkView(calc);
+          break;
+        case 'poshahar15':
+          container.innerHTML = renderPoshaharView(calc, '15');
+          break;
+        case 'poshahar68':
+          container.innerHTML = renderPoshaharView(calc, '68');
+          break;
+        case 'khadyanna':
+          container.innerHTML = renderKhadyannaView(calc);
+          break;
+        case 'rashi':
+          container.innerHTML = renderRashiView(calc);
+          break;
+        case 'mdcf':
+          container.innerHTML = renderMdcfView(calc);
+          break;
+        default:
+          container.innerHTML = renderDashboardView(calc);
+      }
+    }
+
+    /**
+     * ============================================================================
+     * TAB 1: DASHBOARD (OVERVIEW & INLINE QUICK ENTRY)
+     * ============================================================================
+     */
+    function renderDashboardView(calc) {
+      const s = appState.settings;
+      const k = calc.mggsKhadyannaRow;
+      const cook1 = calc.cookingRows[0];
+      const cch1 = calc.cchRows[0];
+
+      // Build active days log
+      const activeDayLogs = [];
+      for (let i = 0; i < 31; i++) {
+        const r15 = calc.p15.rows[i];
+        const r68 = calc.p68.rows[i];
+        const rm = calc.milkRows[i];
+        const hasActivity =
+          r15.totalStu > 0 ||
+          r68.totalStu > 0 ||
+          rm.totStu > 0 ||
+          r15.wSup > 0 ||
+          r15.rSup > 0 ||
+          r68.wSup > 0 ||
+          r68.rSup > 0 ||
+          rm.received > 0;
+
+        if (hasActivity) {
+          const dayCookCost = roundTo(
+            r15.totalStu * s.cookCost15 + r68.totalStu * s.cookCost68,
+            2
+          );
+          activeDayLogs.push({
+            date: i + 1,
+            dayName: r15.dayName,
+            menu: r15.menu,
+            stu15: r15.totalStu,
+            stu68: r68.totalStu,
+            milkStu: rm.totStu,
+            wheatUsed: roundTo(r15.wExp + r68.wExp, 3),
+            riceUsed: roundTo(r15.rExp + r68.rExp, 3),
+            milkUsed: rm.mKg,
+            cookCost: dayCookCost
+          });
+        }
+      }
+
+      // Stock percentages for visual progress bars
+      const pctMilk = Math.min(100, Math.max(5, (calc.milkClosingStock / Math.max(1, appState.milk.day1OpeningKg + calc.milkTotals.milkReceivedKg)) * 100));
+      const pctWheat15 = Math.min(100, Math.max(5, (k.w15Close / Math.max(1, k.w15Avail)) * 100));
+      const pctWheat68 = Math.min(100, Math.max(5, (k.w68Close / Math.max(1, k.w68Avail)) * 100));
+      const pctRice15 = Math.min(100, Math.max(5, (k.r15Close / Math.max(1, k.r15Avail)) * 100));
+      const pctRice68 = Math.min(100, Math.max(5, (k.r68Close / Math.max(1, k.r68Avail)) * 100));
+
+      return `
+        <div class="space-y-6">
+          <!-- KPI Summary Grid (6 Cards) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- KPI 1: Total Enrolment -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-slate-500">कुल नामांकन (Total Enrolment)</p>
+                  <p class="text-3xl font-extrabold text-govblue-900 mt-1">${calc.totalEnrolment}</p>
+                </div>
+                <span class="p-2.5 rounded-xl bg-indigo-50 text-govblue-800 font-bold text-sm">विद्यार्थी</span>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-600">
+                <span>कक्षा 1-5: <strong class="text-slate-900">${s.enrol15}</strong></span>
+                <span>कक्षा 6-8: <strong class="text-slate-900">${s.enrol68}</strong></span>
+              </div>
+            </div>
+
+            <!-- KPI 2: Milk Powder Stock -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-slate-500">दुग्ध पाउडर शेष (Milk Powder Stock)</p>
+                  <p class="text-3xl font-extrabold text-amber-600 mt-1">${fmtNum(calc.milkClosingStock, 3)} <span class="text-base font-bold">kg</span></p>
+                </div>
+                <button onclick="switchTab('milk')" class="px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs">रजिस्टर →</button>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-600">
+                <span>खपत: <strong class="text-slate-900">${fmtNum(calc.milkTotals.milkKgTotal, 3)} kg</strong></span>
+                <span>चीनी: <strong class="text-slate-900">${fmtNum(calc.milkTotals.sugarKgTotal, 3)} kg</strong> | गैस: <strong class="text-slate-900">${fmtRs(calc.milkTotals.gasCostTotal)}</strong></span>
+              </div>
+            </div>
+
+            <!-- KPI 3: Wheat Stock -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-slate-500">गेहूँ शेष (Wheat Stock)</p>
+                  <p class="text-lg sm:text-xl font-extrabold text-emerald-700 mt-1.5">
+                    1-5: ${fmtNum(k.w15Close, 2)} kg <span class="text-slate-300 mx-1">|</span> 6-8: ${fmtNum(k.w68Close, 2)} kg
+                  </p>
+                </div>
+                <button onclick="switchTab('khadyanna')" class="px-2.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs">खाद्यान्न →</button>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-600">
+                <span>व्यय (1-5): <strong class="text-slate-900">${fmtQty(k.w15Exp)} kg</strong></span>
+                <span>व्यय (6-8): <strong class="text-slate-900">${fmtQty(k.w68Exp)} kg</strong></span>
+              </div>
+            </div>
+
+            <!-- KPI 4: Rice Stock -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-slate-500">चावल शेष (Rice Stock)</p>
+                  <p class="text-lg sm:text-xl font-extrabold text-teal-700 mt-1.5">
+                    1-5: ${fmtNum(k.r15Close, 2)} kg <span class="text-slate-300 mx-1">|</span> 6-8: ${fmtNum(k.r68Close, 2)} kg
+                  </p>
+                </div>
+                <button onclick="switchTab('poshahar15')" class="px-2.5 py-1.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold text-xs">पोषाहार →</button>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-600">
+                <span>व्यय (1-5): <strong class="text-slate-900">${fmtQty(k.r15Exp)} kg</strong></span>
+                <span>व्यय (6-8): <strong class="text-slate-900">${fmtQty(k.r68Exp)} kg</strong></span>
+              </div>
+            </div>
+
+            <!-- KPI 5: Cooking Conversion Balance -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-slate-500">कुकिंग कन्वर्ज़न शेष राशि</p>
+                  <p class="text-2xl sm:text-3xl font-extrabold text-govblue-800 mt-1">${fmtRs(cook1.combinedClose)}</p>
+                </div>
+                <button onclick="switchTab('rashi')" class="px-2.5 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-govblue-800 font-bold text-xs">राशि प्रपत्र →</button>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-600">
+                <span>1-5: <strong class="text-slate-900">${fmtRs(cook1.close15)}</strong></span>
+                <span>6-8: <strong class="text-slate-900">${fmtRs(cook1.close68)}</strong></span>
+              </div>
+            </div>
+
+            <!-- KPI 6: Cook-Cum-Helper Balance -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-xs hover:shadow-md transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-slate-500">कुक-कम-हेल्पर शेष राशि</p>
+                  <p class="text-2xl sm:text-3xl font-extrabold text-purple-800 mt-1">${fmtRs(cch1.close)}</p>
+                </div>
+                <button onclick="switchTab('mdcf')" class="px-2.5 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-800 font-bold text-xs">MDCF →</button>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-600">
+                <span>प्रारंभिक: <strong class="text-slate-900">${fmtRs(cch1.open)}</strong></span>
+                <span>व्यय: <strong class="text-rose-700">${fmtRs(cch1.exp)}</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two-Column Section: Interactive Quick Daily Entry + Stock Bars -->
+          <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <!-- Left 7 Cols: Interactive Quick Daily Entry -->
+            <div class="xl:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+              <div class="bg-gradient-to-r from-amber-50 to-orange-50 px-5 py-3.5 border-b border-amber-200/80 flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h2 class="text-base font-extrabold text-slate-900">त्वरित दैनिक प्रविष्टि (Quick Daily Entry)</h2>
+                  <p class="text-xs text-slate-600">तिथि चुनें और उपस्थिति दर्ज करें — सभी 6 प्रपत्र एक साथ अपडेट होंगे</p>
+                </div>
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-900">
+                  कार्य दिवस: ${calc.activeMdmDays}
+                </span>
+              </div>
+              <div class="p-5">
+                ${renderQuickEntryFormHTML('inline')}
+              </div>
+            </div>
+
+            <!-- Right 5 Cols: Visual Stock & Balance Meters -->
+            <div class="xl:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-xs p-5 flex flex-col justify-between space-y-4">
+              <div>
+                <h2 class="text-base font-extrabold text-slate-900">भण्डार एवं बजट स्थिति (Live Stock Overview)</h2>
+                <p class="text-xs text-slate-500 mb-4">प्रारंभिक + प्राप्त के सापेक्ष वर्तमान उपलब्ध स्टॉक</p>
+
+                <div class="space-y-3.5">
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span class="text-slate-700">दुग्ध पाउडर (Milk Powder)</span>
+                      <span class="text-amber-700">${fmtNum(calc.milkClosingStock, 3)} / ${fmtNum(appState.milk.day1OpeningKg + calc.milkTotals.milkReceivedKg, 3)} kg</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div class="h-full bg-amber-500 rounded-full transition-all" style="width: ${pctMilk}%"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span class="text-slate-700">गेहूँ कक्षा 1-5 (Wheat Primary)</span>
+                      <span class="text-emerald-700">${fmtNum(k.w15Close, 2)} / ${fmtNum(k.w15Avail, 2)} kg</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div class="h-full bg-emerald-600 rounded-full transition-all" style="width: ${pctWheat15}%"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span class="text-slate-700">गेहूँ कक्षा 6-8 (Wheat Upper Primary)</span>
+                      <span class="text-emerald-700">${fmtNum(k.w68Close, 2)} / ${fmtNum(k.w68Avail, 2)} kg</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div class="h-full bg-emerald-500 rounded-full transition-all" style="width: ${pctWheat68}%"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span class="text-slate-700">चावल कक्षा 1-5 (Rice Primary)</span>
+                      <span class="text-teal-700">${fmtNum(k.r15Close, 2)} / ${fmtNum(k.r15Avail, 2)} kg</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div class="h-full bg-teal-600 rounded-full transition-all" style="width: ${pctRice15}%"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span class="text-slate-700">चावल कक्षा 6-8 (Rice Upper Primary)</span>
+                      <span class="text-teal-700">${fmtNum(k.r68Close, 2)} / ${fmtNum(k.r68Avail, 2)} kg</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div class="h-full bg-teal-500 rounded-full transition-all" style="width: ${pctRice68}%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Norm Reference Box -->
+              <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200/80 text-xs space-y-1">
+                <div class="font-bold text-slate-800 mb-1">प्रचलित सरकारी मानक दरें (${s.session}):</div>
+                <div class="grid grid-cols-2 gap-x-3 gap-y-1 text-slate-600">
+                  <div>• कुकिंग 1-5: <strong>₹${s.cookCost15}</strong></div>
+                  <div>• कुकिंग 6-8: <strong>₹${s.cookCost68}</strong></div>
+                  <div>• खाद्यान्न 1-5: <strong>${s.grain15 * 1000}g</strong></div>
+                  <div>• खाद्यान्न 6-8: <strong>${s.grain68 * 1000}g</strong></div>
+                  <div>• दुग्ध 1-5: <strong>${s.milkPowder15}g</strong> (चीनी ${s.sugar15}g)</div>
+                  <div>• दुग्ध 6-8: <strong>${s.milkPowder68}g</strong> (चीनी ${s.sugar68}g)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Active Days Summary Table -->
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+            <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
+              <div>
+                <h2 class="text-base font-extrabold text-slate-900">सक्रिय कार्य दिवस लॉग (Active MDM & Milk Days Log)</h2>
+                <p class="text-xs text-slate-500">जिन तिथियों में छात्र उपस्थिति या स्टॉक प्राप्ति दर्ज की गई है</p>
+              </div>
+              <span class="text-xs font-bold text-govblue-800 bg-indigo-50 px-3 py-1 rounded-full">
+                कुल लाभान्वित: ${p15Total(calc)} छात्र
+              </span>
+            </div>
+            <div class="overflow-x-auto table-scroll">
+              <table class="reg-table">
+                <thead class="bg-slate-100 text-slate-800">
+                  <tr>
+                    <th>दिनांक</th>
+                    <th>वार</th>
+                    <th>मेन्यू (व्यंजन)</th>
+                    <th>पोषाहार (1-5)</th>
+                    <th>पोषाहार (6-8)</th>
+                    <th>दुग्ध लाभार्थी</th>
+                    <th>गेहूँ व्यय (kg)</th>
+                    <th>चावल व्यय (kg)</th>
+                    <th>दुग्ध पाउडर (kg)</th>
+                    <th>कुकिंग राशि (₹)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${
+                    activeDayLogs.length === 0
+                      ? `<tr><td colspan="10" class="text-center py-6 text-slate-500">अभी तक किसी कार्य दिवस की प्रविष्टि नहीं है। ऊपर दिए गए फॉर्म से प्रविष्टि करें।</td></tr>`
+                      : activeDayLogs
+                          .map(
+                            (log) => `
+                        <tr class="hover:bg-amber-50/40 text-center">
+                          <td class="font-bold text-govblue-900">${log.date} ${s.monthHi}</td>
+                          <td class="font-semibold">${log.dayName}</td>
+                          <td class="text-left font-medium">${log.menu}</td>
+                          <td class="font-bold">${log.stu15}</td>
+                          <td class="font-bold">${log.stu68}</td>
+                          <td class="font-bold text-amber-700">${log.milkStu}</td>
+                          <td>${fmtQty(log.wheatUsed)}</td>
+                          <td>${fmtQty(log.riceUsed)}</td>
+                          <td>${fmtQty(log.milkUsed)}</td>
+                          <td class="font-bold text-emerald-700">${fmtRs(log.cookCost)}</td>
+                        </tr>
+                      `
+                          )
+                          .join('')
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function p15Total(calc) {
+      return calc.p15.totals.students + calc.p68.totals.students;
+    }
+
+    /**
+     * Quick Daily Entry Form Generator (Shared between Dashboard Inline & Modal)
+     */
+    function renderQuickEntryFormHTML(prefix) {
+      const d = appState.quickEntryDate || 3;
+      const idx = d - 1;
+      const row15 = appState.poshahar15.days[idx];
+      const row68 = appState.poshahar68.days[idx];
+      const rowMilk = appState.milk.days[idx];
+      const s = appState.settings;
+
+      const total15 = (Number(row15.boys) || 0) + (Number(row15.girls) || 0);
+      const total68 = (Number(row68.boys) || 0) + (Number(row68.girls) || 0);
+
+      return `
+        <form onsubmit="submitQuickEntry(event, '${prefix}')" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">दिनांक चुनें (Date 1–31)</label>
+              <select id="${prefix}_date" onchange="handleQuickEntryDateChange(this.value, '${prefix}')" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-bold bg-slate-50 focus:border-govblue-800 focus:bg-white">
+                ${Array.from({ length: 31 }, (_, i) => {
+                  const dayNum = i + 1;
+                  const dn = appState.poshahar15.days[i].dayName;
+                  return `<option value="${dayNum}" ${dayNum === d ? 'selected' : ''}>${dayNum} ${s.monthHi} (${dn})</option>`;
+                }).join('')}
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">वार / अवकाश (Day / Holiday)</label>
+              <select id="${prefix}_dayName" onchange="updateQuickMenuPreview('${prefix}')" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-bold bg-slate-50 focus:border-govblue-800 focus:bg-white">
+                ${WEEKDAYS.map(
+                  (w) => `<option value="${w}" ${w === row15.dayName ? 'selected' : ''}>${w}</option>`
+                ).join('')}
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">आज का व्यंजन (Auto Menu)</label>
+              <div id="${prefix}_menuPreview" class="w-full rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-900 px-3 py-2 text-xs font-bold flex items-center h-[38px]">
+                ${getMenuForWeekday(row15.dayName)}
+              </div>
+            </div>
+          </div>
+
+          <!-- Class 1-5 & Class 6-8 Attendance Inputs -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="p-3.5 rounded-xl bg-indigo-50/70 border border-indigo-200/80 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-extrabold text-govblue-900">कक्षा 1-5 (नामांकन: ${s.enrol15})</span>
+                <span id="${prefix}_tot15Badge" class="text-xs font-extrabold px-2 py-0.5 rounded bg-govblue-800 text-white">योग: ${total15}</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">बालक (Boys)</label>
+                  <input type="number" min="0" id="${prefix}_b15" value="${row15.boys}" oninput="recalcQuickBadges('${prefix}')" class="w-full rounded-lg border border-indigo-200 bg-white px-2.5 py-1.5 text-sm font-bold text-center" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">बालिका (Girls)</label>
+                  <input type="number" min="0" id="${prefix}_g15" value="${row15.girls}" oninput="recalcQuickBadges('${prefix}')" class="w-full rounded-lg border border-indigo-200 bg-white px-2.5 py-1.5 text-sm font-bold text-center" />
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-extrabold text-emerald-950">कक्षा 6-8 (नामांकन: ${s.enrol68})</span>
+                <span id="${prefix}_tot68Badge" class="text-xs font-extrabold px-2 py-0.5 rounded bg-emerald-700 text-white">योग: ${total68}</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">बालक (Boys)</label>
+                  <input type="number" min="0" id="${prefix}_b68" value="${row68.boys}" oninput="recalcQuickBadges('${prefix}')" class="w-full rounded-lg border border-emerald-200 bg-white px-2.5 py-1.5 text-sm font-bold text-center" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">बालिका (Girls)</label>
+                  <input type="number" min="0" id="${prefix}_g68" value="${row68.girls}" oninput="recalcQuickBadges('${prefix}')" class="w-full rounded-lg border border-emerald-200 bg-white px-2.5 py-1.5 text-sm font-bold text-center" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Milk Auto-Sync Toggle -->
+          <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <label class="flex items-center gap-2.5 cursor-pointer select-none">
+              <input type="checkbox" id="${prefix}_syncMilk" checked onchange="toggleQuickMilkManual('${prefix}')" class="w-4 h-4 rounded accent-amber-600" />
+              <div>
+                <div class="text-xs font-extrabold text-amber-950">दुग्ध लाभार्थी स्वतः सिंक करें (Auto-sync Milk Beneficiaries)</div>
+                <div class="text-[11px] text-amber-800">पोषाहार के कुल छात्रों (1-5 व 6-8) को बाल गोपाल दुग्ध रजिस्टर में स्वतः दर्ज करें</div>
+              </div>
+            </label>
+            <div id="${prefix}_manualMilkBox" class="hidden grid grid-cols-2 gap-2 sm:w-48">
+              <div>
+                <label class="block text-[10px] font-bold text-amber-900">दुग्ध 1-5</label>
+                <input type="number" min="0" id="${prefix}_m15" value="${rowMilk.stu15}" class="w-full rounded border border-amber-300 bg-white px-2 py-1 text-xs font-bold text-center" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-amber-900">दुग्ध 6-8</label>
+                <input type="number" min="0" id="${prefix}_m68" value="${rowMilk.stu68}" class="w-full rounded border border-amber-300 bg-white px-2 py-1 text-xs font-bold text-center" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Optional Stock Receipts -->
+          <details class="rounded-xl border border-slate-200 bg-slate-50/70">
+            <summary class="px-3.5 py-2 text-xs font-bold text-slate-700 cursor-pointer select-none">
+              + खाद्यान्न / दुग्ध पाउडर प्राप्ति दर्ज करें (Optional Receipts on this Date)
+            </summary>
+            <div class="p-3.5 pt-1 grid grid-cols-2 sm:grid-cols-5 gap-2.5 border-t border-slate-200/70">
+              <div>
+                <label class="block text-[10px] font-bold text-slate-600 mb-0.5">दुग्ध प्राप्त (kg)</label>
+                <input type="number" step="0.001" min="0" id="${prefix}_recMilk" value="${rowMilk.receivedKg}" class="w-full rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-xs font-bold text-center" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-600 mb-0.5">गेहूँ 1-5 (kg)</label>
+                <input type="number" step="0.001" min="0" id="${prefix}_recW15" value="${row15.wheatSupplied}" class="w-full rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-xs font-bold text-center" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-600 mb-0.5">चावल 1-5 (kg)</label>
+                <input type="number" step="0.001" min="0" id="${prefix}_recR15" value="${row15.riceSupplied}" class="w-full rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-xs font-bold text-center" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-600 mb-0.5">गेहूँ 6-8 (kg)</label>
+                <input type="number" step="0.001" min="0" id="${prefix}_recW68" value="${row68.wheatSupplied}" class="w-full rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-xs font-bold text-center" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-600 mb-0.5">चावल 6-8 (kg)</label>
+                <input type="number" step="0.001" min="0" id="${prefix}_recR68" value="${row68.riceSupplied}" class="w-full rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-xs font-bold text-center" />
+              </div>
+            </div>
+          </details>
+
+          <div class="flex flex-wrap items-center justify-end gap-2 pt-1">
+            ${
+              prefix === 'modal'
+                ? `<button type="button" onclick="closeModal('quickEntryModal')" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs sm:text-sm hover:bg-slate-50">रद्द करें</button>`
+                : ''
+            }
+            <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm shadow-md transition active:scale-95">
+              ✓ सेव करें और सभी 6 रजिस्टर अपडेट करें
+            </button>
+          </div>
+        </form>
+      `;
+    }
+
+    function openQuickEntryModal() {
+      const body = document.getElementById('quickEntryModalBody');
+      if (body) {
+        body.innerHTML = renderQuickEntryFormHTML('modal');
+      }
+      openModal('quickEntryModal');
+    }
+
+    function handleQuickEntryDateChange(dateStr, prefix) {
+      const d = Math.min(31, Math.max(1, Number(dateStr) || 1));
+      appState.quickEntryDate = d;
+      if (prefix === 'modal') {
+        openQuickEntryModal();
+      } else {
+        renderApp();
+      }
+    }
+
+    function updateQuickMenuPreview(prefix) {
+      const dn = document.getElementById(`${prefix}_dayName`)?.value || 'सोमवार';
+      const el = document.getElementById(`${prefix}_menuPreview`);
+      if (el) el.textContent = getMenuForWeekday(dn);
+    }
+
+    function recalcQuickBadges(prefix) {
+      const b15 = Number(document.getElementById(`${prefix}_b15`)?.value) || 0;
+      const g15 = Number(document.getElementById(`${prefix}_g15`)?.value) || 0;
+      const b68 = Number(document.getElementById(`${prefix}_b68`)?.value) || 0;
+      const g68 = Number(document.getElementById(`${prefix}_g68`)?.value) || 0;
+
+      const t15El = document.getElementById(`${prefix}_tot15Badge`);
+      const t68El = document.getElementById(`${prefix}_tot68Badge`);
+      if (t15El) t15El.textContent = `योग: ${b15 + g15}`;
+      if (t68El) t68El.textContent = `योग: ${b68 + g68}`;
+    }
+
+    function toggleQuickMilkManual(prefix) {
+      const checked = document.getElementById(`${prefix}_syncMilk`)?.checked;
+      const box = document.getElementById(`${prefix}_manualMilkBox`);
+      if (box) {
+        if (checked) box.classList.add('hidden');
+        else box.classList.remove('hidden');
+      }
+    }
+
+    function submitQuickEntry(e, prefix) {
+      e.preventDefault();
+      const d = Number(document.getElementById(`${prefix}_date`).value) || 1;
+      const idx = d - 1;
+      const dayName = document.getElementById(`${prefix}_dayName`).value;
+
+      const b15 = Math.max(0, Number(document.getElementById(`${prefix}_b15`).value) || 0);
+      const g15 = Math.max(0, Number(document.getElementById(`${prefix}_g15`).value) || 0);
+      const b68 = Math.max(0, Number(document.getElementById(`${prefix}_b68`).value) || 0);
+      const g68 = Math.max(0, Number(document.getElementById(`${prefix}_g68`).value) || 0);
+
+      const syncMilk = document.getElementById(`${prefix}_syncMilk`).checked;
+      const m15 = syncMilk ? b15 + g15 : Math.max(0, Number(document.getElementById(`${prefix}_m15`).value) || 0);
+      const m68 = syncMilk ? b68 + g68 : Math.max(0, Number(document.getElementById(`${prefix}_m68`).value) || 0);
+
+      const recMilk = Math.max(0, Number(document.getElementById(`${prefix}_recMilk`).value) || 0);
+      const recW15 = Math.max(0, Number(document.getElementById(`${prefix}_recW15`).value) || 0);
+      const recR15 = Math.max(0, Number(document.getElementById(`${prefix}_recR15`).value) || 0);
+      const recW68 = Math.max(0, Number(document.getElementById(`${prefix}_recW68`).value) || 0);
+      const recR68 = Math.max(0, Number(document.getElementById(`${prefix}_recR68`).value) || 0);
+
+      // Update Poshahar 1-5
+      appState.poshahar15.days[idx].dayName = dayName;
+      appState.poshahar15.days[idx].boys = b15;
+      appState.poshahar15.days[idx].girls = g15;
+      appState.poshahar15.days[idx].wheatSupplied = recW15;
+      appState.poshahar15.days[idx].riceSupplied = recR15;
+
+      // Update Poshahar 6-8
+      appState.poshahar68.days[idx].dayName = dayName;
+      appState.poshahar68.days[idx].boys = b68;
+      appState.poshahar68.days[idx].girls = g68;
+      appState.poshahar68.days[idx].wheatSupplied = recW68;
+      appState.poshahar68.days[idx].riceSupplied = recR68;
+
+      // Update Milk Distribution
+      appState.milk.days[idx].stu15 = m15;
+      appState.milk.days[idx].stu68 = m68;
+      appState.milk.days[idx].receivedKg = recMilk;
+
+      // Advance quickEntryDate to next day automatically for convenience
+      appState.quickEntryDate = d < 31 ? d + 1 : 31;
+
+      saveState(true);
+      if (prefix === 'modal') closeModal('quickEntryModal');
+      renderApp();
+      showToast(`दिनांक ${d} ${appState.settings.monthHi} की एंट्री सभी 6 रजिस्टरों में अपडेट हो गई!`);
+    }
+
+    /**
+     * ============================================================================
+     * TAB 2: दुग्ध वितरण एवं स्टॉक (मुख्यमंत्री बाल गोपाल दुग्ध वितरण योजना)
+     * ============================================================================
+     */
+    function renderMilkView(calc) {
+      const s = appState.settings;
+      const t = calc.milkTotals;
+
+      return `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-6 space-y-4">
+          <!-- Official Register Header -->
+          <div class="border-b-2 border-slate-800 pb-3 text-center space-y-1">
+            <div class="inline-block px-3 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold text-xs">
+              राजस्थान सरकार • मिड-डे मील आयुक्तालय
+            </div>
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">
+              मुख्यमंत्री बाल गोपाल दुग्ध वितरण योजना — दैनिक वितरण एवं स्टॉक रजिस्टर
+            </h2>
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs sm:text-sm font-bold text-slate-700 pt-1">
+              <span>विद्यालय का नाम: <strong class="text-govblue-900">${s.schoolNameEn} (${s.schoolNameHi})</strong></span>
+              <span>माह: <strong class="text-govblue-900">${s.monthHi}</strong></span>
+              <span>वर्ष / सत्र: <strong class="text-govblue-900">${s.session}</strong></span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-4 pt-1 text-xs font-bold">
+              <span class="px-2.5 py-1 rounded bg-indigo-50 text-govblue-900 border border-indigo-200">नामांकित छात्र कक्षा 1-5: ${s.enrol15}</span>
+              <span class="px-2.5 py-1 rounded bg-emerald-50 text-emerald-900 border border-emerald-200">नामांकित छात्र कक्षा 6-8: ${s.enrol68}</span>
+              <span class="px-2.5 py-1 rounded bg-amber-50 text-amber-950 border border-amber-200">कुल नामांकन योग: ${calc.totalEnrolment}</span>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-800 border border-slate-300">सक्रिय दुग्ध दिवस: ${t.activeDays}</span>
+            </div>
+          </div>
+
+          <!-- Day 1 Opening Stock Control Bar -->
+          <div class="no-print flex flex-wrap items-center justify-between gap-3 bg-amber-50/80 border border-amber-200 rounded-xl px-4 py-2.5 text-xs">
+            <div class="flex items-center gap-2 font-bold text-amber-950">
+              <span>दिनांक 1 का प्रारंभिक दुग्ध पाउडर स्टॉक (Opening Stock kg):</span>
+              <input
+                type="number"
+                step="0.001"
+                value="${appState.milk.day1OpeningKg}"
+                onchange="updateMilkOpeningStock(this.value)"
+                class="w-28 rounded-lg border border-amber-400 bg-white px-2.5 py-1 text-center font-extrabold text-slate-900"
+              />
+            </div>
+            <div class="text-amber-900 font-medium">
+              मानक: पाउडर (1-5: ${s.milkPowder15}g, 6-8: ${s.milkPowder68}g) • चीनी (1-5: ${s.sugar15}g, 6-8: ${s.sugar68}g @ ₹${s.sugarRate}/kg) • गैस (1-5: ₹${s.gas15}, 6-8: ₹${s.gas68})
+            </div>
+          </div>
+
+          <!-- 31-Day Milk Register Table -->
+          <div class="overflow-x-auto table-scroll">
+            <table class="reg-table">
+              <thead>
+                <tr class="bg-govblue-900 text-white">
+                  <th rowspan="2" class="sticky-col bg-govblue-900">दिनांक</th>
+                  <th colspan="3" class="bg-indigo-800">लाभान्वित छात्र संख्या</th>
+                  <th colspan="3" class="bg-amber-700">दुग्ध पाउडर खपत</th>
+                  <th colspan="3" class="bg-teal-800">चीनी खपत</th>
+                  <th colspan="3" class="bg-emerald-800">दुग्ध पाउडर स्टॉक (कि.ग्रा.)</th>
+                  <th colspan="2" class="bg-sky-800">चीनी खपत व राशि</th>
+                  <th colspan="3" class="bg-purple-900">दूध बनाने में खर्च गैस राशि (₹)</th>
+                </tr>
+                <tr class="bg-slate-100 text-slate-800 text-[11px]">
+                  <th>योग<br/>(1-5)</th>
+                  <th>योग<br/>(6-8)</th>
+                  <th>कुल लाभान्वित<br/>(1 से 8)</th>
+                  <th>कक्षा 1-5<br/>(${s.milkPowder15} ग्रा.)</th>
+                  <th>कक्षा 6-8<br/>(${s.milkPowder68} ग्रा.)</th>
+                  <th>कुल खपत<br/>(कि.ग्रा.)</th>
+                  <th>कक्षा 1-5<br/>(${s.sugar15} ग्रा.)</th>
+                  <th>कक्षा 6-8<br/>(${s.sugar68} ग्रा.)</th>
+                  <th>कुल खपत<br/>(कि.ग्रा.)</th>
+                  <th>गत शेष<br/>(Opening)</th>
+                  <th>प्राप्त<br/>(Received)</th>
+                  <th>शेष<br/>(Closing)</th>
+                  <th>कुल चीनी<br/>(कि.ग्रा.)</th>
+                  <th>कुल राशि<br/>(₹${s.sugarRate}/kg)</th>
+                  <th>कक्षा 1-5<br/>(₹${s.gas15})</th>
+                  <th>कक्षा 6-8<br/>(₹${s.gas68})</th>
+                  <th>कुल गैस<br/>राशि (₹)</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${calc.milkRows
+                  .map(
+                    (r, idx) => `
+                  <tr class="text-center ${r.totStu > 0 ? 'bg-amber-50/40 font-semibold' : 'hover:bg-slate-50'}">
+                    <td class="sticky-col bg-slate-100 font-bold text-slate-900">${r.date}</td>
+                    <td>
+                      <input type="number" min="0" value="${r.b}" onchange="updateMilkCell(${idx}, 'stu15', this.value)" class="cell-input" />
+                    </td>
+                    <td>
+                      <input type="number" min="0" value="${r.c}" onchange="updateMilkCell(${idx}, 'stu68', this.value)" class="cell-input" />
+                    </td>
+                    <td class="font-bold bg-indigo-50/50 text-govblue-900">${r.totStu}</td>
+                    <td>${fmtQty(r.mGrams15)}</td>
+                    <td>${fmtQty(r.mGrams68)}</td>
+                    <td class="font-bold text-amber-800">${fmtQty(r.mKg)}</td>
+                    <td>${fmtQty(r.sGrams15)}</td>
+                    <td>${fmtQty(r.sGrams68)}</td>
+                    <td class="font-bold text-teal-800">${fmtQty(r.sKg)}</td>
+                    <td class="text-slate-600">${fmtQty(r.opening)}</td>
+                    <td>
+                      <input type="number" step="0.001" min="0" value="${r.received}" onchange="updateMilkCell(${idx}, 'receivedKg', this.value)" class="cell-input" />
+                    </td>
+                    <td class="font-bold bg-emerald-50/50 text-emerald-900">${fmtQty(r.closing)}</td>
+                    <td>${fmtQty(r.sKg)}</td>
+                    <td class="font-semibold text-sky-900">${fmtNum(r.sugarRs, 2)}</td>
+                    <td>${fmtNum(r.gas15Rs, 2)}</td>
+                    <td>${fmtNum(r.gas68Rs, 2)}</td>
+                    <td class="font-bold text-purple-900">${fmtNum(r.gasTotRs, 2)}</td>
+                  </tr>
+                `
+                  )
+                  .join('')}
+              </tbody>
+              <tfoot>
+                <tr class="bg-slate-800 text-white font-extrabold text-center">
+                  <td class="sticky-col bg-slate-800">कुल योग</td>
+                  <td>${t.stu15}</td>
+                  <td>${t.stu68}</td>
+                  <td class="text-amber-300">${t.stuTotal}</td>
+                  <td>${fmtQty(t.milkGrams15)}</td>
+                  <td>${fmtQty(t.milkGrams68)}</td>
+                  <td class="text-amber-300">${fmtQty(t.milkKgTotal)}</td>
+                  <td>${fmtQty(t.sugarGrams15)}</td>
+                  <td>${fmtQty(t.sugarGrams68)}</td>
+                  <td class="text-teal-300">${fmtQty(t.sugarKgTotal)}</td>
+                  <td>${fmtQty(appState.milk.day1OpeningKg)}</td>
+                  <td>${fmtQty(t.milkReceivedKg)}</td>
+                  <td class="text-emerald-300">${fmtQty(calc.milkClosingStock)}</td>
+                  <td>${fmtQty(t.sugarKgTotal)}</td>
+                  <td>₹${fmtNum(t.sugarCostTotal, 2)}</td>
+                  <td>₹${fmtNum(t.gasCost15, 2)}</td>
+                  <td>₹${fmtNum(t.gasCost68, 2)}</td>
+                  <td class="text-amber-300">₹${fmtNum(t.gasCostTotal, 2)}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Official Signature Block -->
+          <div class="pt-8 pb-2 px-4 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8 text-xs sm:text-sm font-bold text-slate-800">
+            <div class="text-center">
+              <div class="w-56 border-b border-dashed border-slate-500 mb-1.5"></div>
+              <p>चखने वाले / जांचकर्ता के हस्ताक्षर</p>
+            </div>
+            <div class="text-center">
+              <p class="text-xs font-semibold text-slate-500 mb-4">कुल कार्य दिवस: ${t.activeDays}</p>
+            </div>
+            <div class="text-center">
+              <div class="w-56 border-b border-dashed border-slate-500 mb-1.5"></div>
+              <p>हस्ताक्षर संस्था प्रधान (मय सील)</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateMilkOpeningStock(val) {
+      appState.milk.day1OpeningKg = Math.max(0, roundTo(Number(val) || 0, 3));
+      saveState();
+      renderApp();
+    }
+
+    function updateMilkCell(idx, field, val) {
+      const num = Math.max(0, Number(val) || 0);
+      appState.milk.days[idx][field] = field === 'receivedKg' ? roundTo(num, 3) : Math.round(num);
+      saveState();
+      renderApp();
+    }
+
+    /**
+     * ============================================================================
+     * TAB 3 & TAB 4: दैनिक पोषाहार (कक्षा 1-5 एवं कक्षा 6-8)
+     * ============================================================================
+     */
+    function renderPoshaharView(calc, classGroup) {
+      const is15 = classGroup === '15';
+      const s = appState.settings;
+      const sheet = is15 ? calc.p15 : calc.p68;
+      const rawSheet = is15 ? appState.poshahar15 : appState.poshahar68;
+      const enrol = is15 ? s.enrol15 : s.enrol68;
+      const normGrams = is15 ? (Number(s.grain15) || 0.1) * 1000 : (Number(s.grain68) || 0.15) * 1000;
+      const classLabel = is15 ? 'कक्षा 1 से 5 (Primary)' : 'कक्षा 6 से 8 (Upper Primary)';
+
+      return `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-6 space-y-4">
+          <!-- Register Header -->
+          <div class="border-b-2 border-slate-800 pb-3 text-center space-y-1">
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">
+              दैनिक पोषाहार रजिस्टर — ${s.schoolNameEn} (${s.schoolNameHi})
+            </h2>
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs sm:text-sm font-bold text-slate-700 pt-1">
+              <span>कक्षा वर्ग: <strong class="text-govblue-900">${classLabel}</strong></span>
+              <span>नामांकन: <strong class="text-govblue-900">${enrol}</strong></span>
+              <span>माह: <strong class="text-govblue-900">${s.monthHi} ${s.calendarYear}</strong></span>
+              <span>खाद्यान्न दर: <strong class="text-emerald-800">${normGrams} ग्राम/छात्र</strong></span>
+            </div>
+          </div>
+
+          <!-- Opening Grain Balances Control Bar -->
+          <div class="no-print flex flex-wrap items-center justify-between gap-3 bg-emerald-50/80 border border-emerald-200 rounded-xl px-4 py-2.5 text-xs">
+            <div class="flex flex-wrap items-center gap-4 font-bold text-emerald-950">
+              <label class="flex items-center gap-2">
+                <span>प्रारम्भिक गेहूँ शेष (kg):</span>
+                <input
+                  type="number"
+                  step="0.001"
+                  value="${rawSheet.openingWheat}"
+                  onchange="updatePoshaharOpening('${classGroup}', 'openingWheat', this.value)"
+                  class="w-24 rounded-lg border border-emerald-400 bg-white px-2 py-1 text-center font-extrabold text-slate-900"
+                />
+              </label>
+              <label class="flex items-center gap-2">
+                <span>प्रारम्भिक चावल शेष (kg):</span>
+                <input
+                  type="number"
+                  step="0.001"
+                  value="${rawSheet.openingRice}"
+                  onchange="updatePoshaharOpening('${classGroup}', 'openingRice', this.value)"
+                  class="w-24 rounded-lg border border-emerald-400 bg-white px-2 py-1 text-center font-extrabold text-slate-900"
+                />
+              </label>
+            </div>
+            <div class="text-emerald-900 font-semibold">
+              सक्रिय कार्य दिवस: <strong>${sheet.totals.activeDays}</strong> • कुल छात्र-दिवस: <strong>${sheet.totals.students}</strong>
+            </div>
+          </div>
+
+          <!-- 31-Day Poshahar Register Table -->
+          <div class="overflow-x-auto table-scroll">
+            <table class="reg-table">
+              <thead>
+                <tr class="bg-govblue-900 text-white">
+                  <th rowspan="2" class="sticky-col bg-govblue-900">दिनांक</th>
+                  <th rowspan="2">वार</th>
+                  <th rowspan="2">व्यंजन का प्रकार<br/>(साप्ताहिक मेन्यू)</th>
+                  <th colspan="3" class="bg-indigo-800">लाभान्वित छात्र सं.</th>
+                  <th colspan="6" class="bg-amber-700">गेहूँ का विवरण (कि.ग्रा.) — सोम/बुध/शुक्र/शनि</th>
+                  <th colspan="6" class="bg-teal-800">चावल का विवरण (कि.ग्रा.) — मंगल/गुरु</th>
+                </tr>
+                <tr class="bg-slate-100 text-slate-800 text-[11px]">
+                  <th>बालक<br/>(B)</th>
+                  <th>बालिका<br/>(G)</th>
+                  <th>योग<br/>(T)</th>
+                  <th>प्रारम्भिक<br/>शेष</th>
+                  <th>सप्लायर<br/>प्राप्त</th>
+                  <th>अन्य से<br/>उधार</th>
+                  <th>कुल<br/>उपलब्ध</th>
+                  <th>व्यय<br/>(kg)</th>
+                  <th>अन्तिम<br/>शेष</th>
+                  <th>प्रारम्भिक<br/>शेष</th>
+                  <th>सप्लायर<br/>प्राप्त</th>
+                  <th>अन्य से<br/>उधार</th>
+                  <th>कुल<br/>उपलब्ध</th>
+                  <th>व्यय<br/>(kg)</th>
+                  <th>अन्तिम<br/>शेष</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${sheet.rows
+                  .map((r, idx) => {
+                    const isHoliday = r.dayName === 'रविवार' || r.dayName === 'अवकाश';
+                    const rowClass = isHoliday
+                      ? 'bg-rose-50/60 text-slate-500'
+                      : r.totalStu > 0
+                      ? 'bg-emerald-50/50 font-semibold'
+                      : 'hover:bg-slate-50';
+                    return `
+                      <tr class="text-center ${rowClass}">
+                        <td class="sticky-col bg-slate-100 font-bold text-slate-900">${r.date}</td>
+                        <td>
+                          <select onchange="updatePoshaharDay('${classGroup}', ${idx}, 'dayName', this.value)" class="cell-select">
+                            ${WEEKDAYS.map(
+                              (w) => `<option value="${w}" ${w === r.dayName ? 'selected' : ''}>${w}</option>`
+                            ).join('')}
+                          </select>
+                        </td>
+                        <td class="text-left text-[11px] font-medium whitespace-nowrap ${isHoliday ? 'text-rose-700 font-bold' : 'text-slate-700'}">
+                          ${r.menu}
+                        </td>
+                        <td>
+                          <input type="number" min="0" value="${r.boys}" onchange="updatePoshaharDay('${classGroup}', ${idx}, 'boys', this.value)" class="cell-input" />
+                        </td>
+                        <td>
+                          <input type="number" min="0" value="${r.girls}" onchange="updatePoshaharDay('${classGroup}', ${idx}, 'girls', this.value)" class="cell-input" />
+                        </td>
+                        <td class="font-bold bg-indigo-50/50 text-govblue-900">${r.totalStu}</td>
+
+                        <!-- Wheat -->
+                        <td class="text-slate-600">${fmtQty(r.wOpen)}</td>
+                        <td>
+                          <input type="number" step="0.001" min="0" value="${r.wSup}" onchange="updatePoshaharDay('${classGroup}', ${idx}, 'wheatSupplied', this.value)" class="cell-input" />
+                        </td>
+                        <td>
+                          <input type="number" step="0.001" min="0" value="${r.wLoan}" onchange="updatePoshaharDay('${classGroup}', ${idx}, 'wheatLoan', this.value)" class="cell-input" />
+                        </td>
+                        <td class="font-semibold">${fmtQty(r.wAvail)}</td>
+                        <td class="font-bold text-amber-800">${fmtQty(r.wExp)}</td>
+                        <td class="font-bold bg-amber-50/40 text-slate-900">${fmtQty(r.wClose)}</td>
+
+                        <!-- Rice -->
+                        <td class="text-slate-600">${fmtQty(r.rOpen)}</td>
+                        <td>
+                          <input type="number" step="0.001" min="0" value="${r.rSup}" onchange="updatePoshaharDay('${classGroup}', ${idx}, 'riceSupplied', this.value)" class="cell-input" />
+                        </td>
+                        <td>
+                          <input type="number" step="0.001" min="0" value="${r.rLoan}" onchange="updatePoshaharDay('${classGroup}', ${idx}, 'riceLoan', this.value)" class="cell-input" />
+                        </td>
+                        <td class="font-semibold">${fmtQty(r.rAvail)}</td>
+                        <td class="font-bold text-teal-800">${fmtQty(r.rExp)}</td>
+                        <td class="font-bold bg-teal-50/40 text-slate-900">${fmtQty(r.rClose)}</td>
+                      </tr>
+                    `;
+                  })
+                  .join('')}
+              </tbody>
+              <tfoot>
+                <tr class="bg-slate-800 text-white font-extrabold text-center">
+                  <td colspan="3" class="sticky-col bg-slate-800">मासिक कुल योग (Total)</td>
+                  <td>${sheet.totals.boys}</td>
+                  <td>${sheet.totals.girls}</td>
+                  <td class="text-amber-300">${sheet.totals.students}</td>
+                  <td>${fmtQty(rawSheet.openingWheat)}</td>
+                  <td>${fmtQty(sheet.totals.wheatSupplied)}</td>
+                  <td>${fmtQty(sheet.totals.wheatLoan)}</td>
+                  <td>${fmtQty(roundTo(rawSheet.openingWheat + sheet.totals.wheatSupplied + sheet.totals.wheatLoan, 3))}</td>
+                  <td class="text-amber-300">${fmtQty(sheet.totals.wheatExp)}</td>
+                  <td class="text-emerald-300">${fmtQty(sheet.closingWheat)}</td>
+                  <td>${fmtQty(rawSheet.openingRice)}</td>
+                  <td>${fmtQty(sheet.totals.riceSupplied)}</td>
+                  <td>${fmtQty(sheet.totals.riceLoan)}</td>
+                  <td>${fmtQty(roundTo(rawSheet.openingRice + sheet.totals.riceSupplied + sheet.totals.riceLoan, 3))}</td>
+                  <td class="text-teal-300">${fmtQty(sheet.totals.riceExp)}</td>
+                  <td class="text-emerald-300">${fmtQty(sheet.closingRice)}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Signature Footer -->
+          <div class="pt-8 pb-2 px-4 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8 text-xs sm:text-sm font-bold text-slate-800">
+            <div class="text-center">
+              <div class="w-56 border-b border-dashed border-slate-500 mb-1.5"></div>
+              <p>हस्ताक्षर पोषाहार प्रभारी</p>
+            </div>
+            <div class="text-center">
+              <div class="w-56 border-b border-dashed border-slate-500 mb-1.5"></div>
+              <p>हस्ताक्षर संस्था प्रधान (मय सील)</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updatePoshaharOpening(classGroup, field, val) {
+      const target = classGroup === '15' ? appState.poshahar15 : appState.poshahar68;
+      target[field] = Math.max(0, roundTo(Number(val) || 0, 3));
+      saveState();
+      renderApp();
+    }
+
+    function updatePoshaharDay(classGroup, idx, field, val) {
+      const target = classGroup === '15' ? appState.poshahar15 : appState.poshahar68;
+      if (field === 'dayName') {
+        target.days[idx].dayName = val;
+        // Sync weekday across 1-5 and 6-8 automatically
+        appState.poshahar15.days[idx].dayName = val;
+        appState.poshahar68.days[idx].dayName = val;
+      } else if (field === 'boys' || field === 'girls') {
+        target.days[idx][field] = Math.max(0, Math.round(Number(val) || 0));
+      } else {
+        target.days[idx][field] = Math.max(0, roundTo(Number(val) || 0, 3));
+      }
+      saveState();
+      renderApp();
+    }
+
+    /**
+     * ============================================================================
+     * TAB 5: खाद्यान्न प्रपत्र (MDM मासिक सूचना प्रपत्र - नोडलवार एकजाई)
+     * ============================================================================
+     */
+    function renderKhadyannaView(calc) {
+      const s = appState.settings;
+      const rows = calc.nodalKhadyannaRows;
+
+      // Compute Nodal Totals
+      const tot = rows.reduce(
+        (acc, r) => {
+          acc.enrol15 += r.enrol15;
+          acc.enrol68 += r.enrol68;
+          acc.enrolTot += r.enrolTot;
+          acc.days += Number(r.days) || 0;
+          acc.w15Open = roundTo(acc.w15Open + (Number(r.w15Open) || 0), 3);
+          acc.w15Rec = roundTo(acc.w15Rec + (Number(r.w15Rec) || 0), 3);
+          acc.w15Avail = roundTo(acc.w15Avail + r.w15Avail, 3);
+          acc.w15Exp = roundTo(acc.w15Exp + (Number(r.w15Exp) || 0), 3);
+          acc.w15Close = roundTo(acc.w15Close + r.w15Close, 3);
+
+          acc.r15Open = roundTo(acc.r15Open + (Number(r.r15Open) || 0), 3);
+          acc.r15Rec = roundTo(acc.r15Rec + (Number(r.r15Rec) || 0), 3);
+          acc.r15Avail = roundTo(acc.r15Avail + r.r15Avail, 3);
+          acc.r15Exp = roundTo(acc.r15Exp + (Number(r.r15Exp) || 0), 3);
+          acc.r15Close = roundTo(acc.r15Close + r.r15Close, 3);
+
+          acc.w68Open = roundTo(acc.w68Open + (Number(r.w68Open) || 0), 3);
+          acc.w68Rec = roundTo(acc.w68Rec + (Number(r.w68Rec) || 0), 3);
+          acc.w68Avail = roundTo(acc.w68Avail + r.w68Avail, 3);
+          acc.w68Exp = roundTo(acc.w68Exp + (Number(r.w68Exp) || 0), 3);
+          acc.w68Close = roundTo(acc.w68Close + r.w68Close, 3);
+
+          acc.r68Open = roundTo(acc.r68Open + (Number(r.r68Open) || 0), 3);
+          acc.r68Rec = roundTo(acc.r68Rec + (Number(r.r68Rec) || 0), 3);
+          acc.r68Avail = roundTo(acc.r68Avail + r.r68Avail, 3);
+          acc.r68Exp = roundTo(acc.r68Exp + (Number(r.r68Exp) || 0), 3);
+          acc.r68Close = roundTo(acc.r68Close + r.r68Close, 3);
+
+          acc.ben15 += r.ben15;
+          acc.ben68 += r.ben68;
+          acc.benTot += r.benTot;
+          return acc;
+        },
+        {
+          enrol15: 0, enrol68: 0, enrolTot: 0, days: 0,
+          w15Open: 0, w15Rec: 0, w15Avail: 0, w15Exp: 0, w15Close: 0,
+          r15Open: 0, r15Rec: 0, r15Avail: 0, r15Exp: 0, r15Close: 0,
+          w68Open: 0, w68Rec: 0, w68Avail: 0, w68Exp: 0, w68Close: 0,
+          r68Open: 0, r68Rec: 0, r68Avail: 0, r68Exp: 0, r68Close: 0,
+          ben15: 0, ben68: 0, benTot: 0
+        }
+      );
+
+      return `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-6 space-y-4">
+          <!-- Official Nodal Header -->
+          <div class="border-b-2 border-slate-800 pb-3 text-center space-y-1">
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">${s.schoolNameHi}</h2>
+            <h3 class="text-base sm:text-lg font-bold text-govblue-900">एमडीएम मासिक सूचना प्रपत्र (नोडलवार एकजाई) — खाद्यान्न विवरण</h3>
+            <div class="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm font-bold text-slate-700 pt-1">
+              <span>नोडल का नाम: <strong class="text-slate-950">${s.nodalName}</strong></span>
+              <span>ब्लॉक: <strong class="text-slate-950">${s.blockHi}</strong></span>
+              <span>माह का नाम: <strong class="text-slate-950">${s.monthHi} ${s.calendarYear}</strong></span>
+            </div>
+          </div>
+
+          <div class="no-print text-xs bg-indigo-50 border border-indigo-200 rounded-xl px-4 py-2.5 text-govblue-950 font-medium">
+            <strong>स्वतः एकीकरण (Live Sync):</strong> पंक्ति 1 (<strong>${s.schoolNameEn}</strong>) का नामांकन, कार्य दिवस, प्रारंभिक शेष, व्यय एवं लाभार्थी संख्या स्वतः दैनिक पोषाहार रजिस्टर (1-5 व 6-8) से जुड़ी हुई है। अन्य नोडल विद्यालयों (पंक्ति 2–7) का डेटा सीधे संपादित किया जा सकता है।
+          </div>
+
+          <!-- Nodal Multi-School Table -->
+          <div class="overflow-x-auto table-scroll">
+            <table class="reg-table">
+              <thead>
+                <tr class="bg-govblue-900 text-white">
+                  <th rowspan="2">क्र.<br/>सं.</th>
+                  <th rowspan="2" class="sticky-col bg-govblue-900 min-w-[130px]">विद्यालय का नाम</th>
+                  <th colspan="3" class="bg-indigo-800">नामांकन</th>
+                  <th rowspan="2">कार्य<br/>दिवस</th>
+                  <th colspan="5" class="bg-amber-700">गेहूँ कक्षा 1 से 5 (कि.ग्रा.)</th>
+                  <th colspan="5" class="bg-teal-800">चावल कक्षा 1 से 5 (कि.ग्रा.)</th>
+                  <th colspan="5" class="bg-orange-800">गेहूँ कक्षा 6 से 8 (कि.ग्रा.)</th>
+                  <th colspan="5" class="bg-cyan-800">चावल कक्षा 6 से 8 (कि.ग्रा.)</th>
+                  <th colspan="3" class="bg-emerald-800">लाभान्वित छात्र संख्या</th>
+                </tr>
+                <tr class="bg-slate-100 text-slate-800 text-[10.5px]">
+                  <th>1-5</th>
+                  <th>6-8</th>
+                  <th>कुल</th>
+
+                  <th>प्रारं.</th>
+                  <th>प्राप्त</th>
+                  <th>कुल</th>
+                  <th>व्यय</th>
+                  <th>शेष</th>
+
+                  <th>प्रारं.</th>
+                  <th>प्राप्त</th>
+                  <th>कुल</th>
+                  <th>व्यय</th>
+                  <th>शेष</th>
+
+                  <th>प्रारं.</th>
+                  <th>प्राप्त</th>
+                  <th>कुल</th>
+                  <th>व्यय</th>
+                  <th>शेष</th>
+
+                  <th>प्रारं.</th>
+                  <th>प्राप्त</th>
+                  <th>कुल</th>
+                  <th>व्यय</th>
+                  <th>शेष</th>
+
+                  <th>1-5</th>
+                  <th>6-8</th>
+                  <th>कुल</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rows
+                  .map((r, idx) => {
+                    if (r.isPrimary) {
+                      return `
+                        <tr class="text-center bg-amber-50/70 font-bold">
+                          <td>1</td>
+                          <td class="sticky-col bg-amber-100 text-left font-extrabold text-govblue-950">${r.name}</td>
+                          <td>${r.enrol15}</td>
+                          <td>${r.enrol68}</td>
+                          <td class="bg-indigo-50">${r.enrolTot}</td>
+                          <td>${r.days}</td>
+
+                          <!-- Wheat 1-5 -->
+                          <td>${fmtQty(r.w15Open)}</td>
+                          <td>
+                            <input type="number" step="0.001" min="0" value="${appState.khadyanna.mggsBaseReceived.wheat15}" onchange="updateMggsBaseRec('wheat15', this.value)" class="cell-input" title="मासिक आवंटन / प्राप्त गेहूँ (1-5)" />
+                          </td>
+                          <td>${fmtQty(r.w15Avail)}</td>
+                          <td class="text-amber-800">${fmtQty(r.w15Exp)}</td>
+                          <td class="bg-amber-100/70 text-slate-950">${fmtQty(r.w15Close)}</td>
+
+                          <!-- Rice 1-5 -->
+                          <td>${fmtQty(r.r15Open)}</td>
+                          <td>
+                            <input type="number" step="0.001" min="0" value="${appState.khadyanna.mggsBaseReceived.rice15}" onchange="updateMggsBaseRec('rice15', this.value)" class="cell-input" title="मासिक आवंटन / प्राप्त चावल (1-5)" />
+                          </td>
+                          <td>${fmtQty(r.r15Avail)}</td>
+                          <td class="text-teal-800">${fmtQty(r.r15Exp)}</td>
+                          <td class="bg-teal-100/70 text-slate-950">${fmtQty(r.r15Close)}</td>
+
+                          <!-- Wheat 6-8 -->
+                          <td>${fmtQty(r.w68Open)}</td>
+                          <td>
+                            <input type="number" step="0.001" min="0" value="${appState.khadyanna.mggsBaseReceived.wheat68}" onchange="updateMggsBaseRec('wheat68', this.value)" class="cell-input" title="मासिक आवंटन / प्राप्त गेहूँ (6-8)" />
+                          </td>
+                          <td>${fmtQty(r.w68Avail)}</td>
+                          <td class="text-orange-800">${fmtQty(r.w68Exp)}</td>
+                          <td class="bg-orange-100/70 text-slate-950">${fmtQty(r.w68Close)}</td>
+
+                          <!-- Rice 6-8 -->
+                          <td>${fmtQty(r.r68Open)}</td>
+                          <td>
+                            <input type="number" step="0.001" min="0" value="${appState.khadyanna.mggsBaseReceived.rice68}" onchange="updateMggsBaseRec('rice68', this.value)" class="cell-input" title="मासिक आवंटन / प्राप्त चावल (6-8)" />
+                          </td>
+                          <td>${fmtQty(r.r68Avail)}</td>
+                          <td class="text-cyan-800">${fmtQty(r.r68Exp)}</td>
+                          <td class="bg-cyan-100/70 text-slate-950">${fmtQty(r.r68Close)}</td>
+
+                          <!-- Beneficiaries -->
+                          <td>${r.ben15}</td>
+                          <td>${r.ben68}</td>
+                          <td class="bg-emerald-100/80 text-emerald-950">${r.benTot}</td>
+                        </tr>
+                      `;
+                    }
+
+                    const otherIdx = idx - 1;
+                    return `
+                      <tr class="text-center hover:bg-slate-50">
+                        <td class="font-semibold">${idx + 1}</td>
+                        <td class="sticky-col bg-white">
+                          <input type="text" placeholder="विद्यालय नाम..." value="${r.name}" onchange="updateNodalKhadyanna(${otherIdx}, 'name', this.value)" class="cell-input cell-input-text" />
+                        </td>
+                        <td><input type="number" min="0" value="${r.enrol15}" onchange="updateNodalKhadyanna(${otherIdx}, 'enrol15', this.value)" class="cell-input" /></td>
+                        <td><input type="number" min="0" value="${r.enrol68}" onchange="updateNodalKhadyanna(${otherIdx}, 'enrol68', this.value)" class="cell-input" /></td>
+                        <td class="font-bold">${r.enrolTot}</td>
+                        <td><input type="number" min="0" value="${r.days}" onchange="updateNodalKhadyanna(${otherIdx}, 'days', this.value)" class="cell-input" /></td>
+
+                        <td><input type="number" step="0.001" min="0" value="${r.w15Open}" onchange="updateNodalKhadyanna(${otherIdx}, 'w15Open', this.value)" class="cell-input" /></td>
+                        <td><input type="number" step="0.001" min="0" value="${r.w15Rec}" onchange="updateNodalKhadyanna(${otherIdx}, 'w15Rec', this.value)" class="cell-input" /></td>
+                        <td class="font-semibold">${fmtQty(r.w15Avail)}</td>
+                        <td><input type="number" step="0.001" min="0" value="${r.w15Exp}" onchange="updateNodalKhadyanna(${otherIdx}, 'w15Exp', this.value)" class="cell-input" /></td>
+                        <td class="font-bold bg-slate-50">${fmtQty(r.w15Close)}</td>
+
+                        <td><input type="number" step="0.001" min="0" value="${r.r15Open}" onchange="updateNodalKhadyanna(${otherIdx}, 'r15Open', this.value)" class="cell-input" /></td>
+                        <td><input type="number" step="0.001" min="0" value="${r.r15Rec}" onchange="updateNodalKhadyanna(${otherIdx}, 'r15Rec', this.value)" class="cell-input" /></td>
+                        <td class="font-semibold">${fmtQty(r.r15Avail)}</td>
+                        <td><input type="number" step="0.001" min="0" value="${r.r15Exp}" onchange="updateNodalKhadyanna(${otherIdx}, 'r15Exp', this.value)" class="cell-input" /></td>
+                        <td class="font-bold bg-slate-50">${fmtQty(r.r15Close)}</td>
+
+                        <td><input type="number" step="0.001" min="0" value="${r.w68Open}" onchange="updateNodalKhadyanna(${otherIdx}, 'w68Open', this.value)" class="cell-input" /></td>
+                        <td><input type="number" step="0.001" min="0" value="${r.w68Rec}" onchange="updateNodalKhadyanna(${otherIdx}, 'w68Rec', this.value)" class="cell-input" /></td>
+                        <td class="font-semibold">${fmtQty(r.w68Avail)}</td>
+                        <td><input type="number" step="0.001" min="0" value="${r.w68Exp}" onchange="updateNodalKhadyanna(${otherIdx}, 'w68Exp', this.value)" class="cell-input" /></td>
+                        <td class="font-bold bg-slate-50">${fmtQty(r.w68Close)}</td>
+
+                        <td><input type="number" step="0.001" min="0" value="${r.r68Open}" onchange="updateNodalKhadyanna(${otherIdx}, 'r68Open', this.value)" class="cell-input" /></td>
+                        <td><input type="number" step="0.001" min="0" value="${r.r68Rec}" onchange="updateNodalKhadyanna(${otherIdx}, 'r68Rec', this.value)" class="cell-input" /></td>
+                        <td class="font-semibold">${fmtQty(r.r68Avail)}</td>
+                        <td><input type="number" step="0.001" min="0" value="${r.r68Exp}" onchange="updateNodalKhadyanna(${otherIdx}, 'r68Exp', this.value)" class="cell-input" /></td>
+                        <td class="font-bold bg-slate-50">${fmtQty(r.r68Close)}</td>
+
+                        <td><input type="number" min="0" value="${r.ben15}" onchange="updateNodalKhadyanna(${otherIdx}, 'ben15', this.value)" class="cell-input" /></td>
+                        <td><input type="number" min="0" value="${r.ben68}" onchange="updateNodalKhadyanna(${otherIdx}, 'ben68', this.value)" class="cell-input" /></td>
+                        <td class="font-bold">${r.benTot}</td>
+                      </tr>
+                    `;
+                  })
+                  .join('')}
+              </tbody>
+              <tfoot>
+                <tr class="bg-slate-800 text-white font-extrabold text-center">
+                  <td colspan="2" class="sticky-col bg-slate-800">योग (Total)</td>
+                  <td>${tot.enrol15}</td>
+                  <td>${tot.enrol68}</td>
+                  <td class="text-amber-300">${tot.enrolTot}</td>
+                  <td>${tot.days}</td>
+
+                  <td>${fmtQty(tot.w15Open)}</td>
+                  <td>${fmtQty(tot.w15Rec)}</td>
+                  <td>${fmtQty(tot.w15Avail)}</td>
+                  <td>${fmtQty(tot.w15Exp)}</td>
+                  <td class="text-amber-300">${fmtQty(tot.w15Close)}</td>
+
+                  <td>${fmtQty(tot.r15Open)}</td>
+                  <td>${fmtQty(tot.r15Rec)}</td>
+                  <td>${fmtQty(tot.r15Avail)}</td>
+                  <td>${fmtQty(tot.r15Exp)}</td>
+                  <td class="text-teal-300">${fmtQty(tot.r15Close)}</td>
+
+                  <td>${fmtQty(tot.w68Open)}</td>
+                  <td>${fmtQty(tot.w68Rec)}</td>
+                  <td>${fmtQty(tot.w68Avail)}</td>
+                  <td>${fmtQty(tot.w68Exp)}</td>
+                  <td class="text-orange-300">${fmtQty(tot.w68Close)}</td>
+
+                  <td>${fmtQty(tot.r68Open)}</td>
+                  <td>${fmtQty(tot.r68Rec)}</td>
+                  <td>${fmtQty(tot.r68Avail)}</td>
+                  <td>${fmtQty(tot.r68Exp)}</td>
+                  <td class="text-cyan-300">${fmtQty(tot.r68Close)}</td>
+
+                  <td>${tot.ben15}</td>
+                  <td>${tot.ben68}</td>
+                  <td class="text-emerald-300">${tot.benTot}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Official Footer Note & Signature -->
+          <div class="pt-4 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div class="p-3 rounded-xl bg-amber-50 border border-amber-300 text-xs sm:text-sm font-extrabold text-amber-950">
+              नोटः- उक्त सूचना माह की 2 तारीख तक अनिवार्यतः कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, ${s.blockHi} मे उपलब्ध करावें।
+            </div>
+            <div class="text-center text-xs sm:text-sm font-bold text-slate-800 shrink-0 pt-4">
+              <div class="w-56 border-b border-dashed border-slate-500 mb-1.5 mx-auto"></div>
+              <p>हस्ताक्षर PEEO / संस्था प्रधान (मय सील)</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateMggsBaseRec(field, val) {
+      appState.khadyanna.mggsBaseReceived[field] = Math.max(0, roundTo(Number(val) || 0, 3));
+      saveState();
+      renderApp();
+    }
+
+    function updateNodalKhadyanna(otherIdx, field, val) {
+      if (field === 'name') {
+        appState.khadyanna.otherSchools[otherIdx].name = val;
+      } else {
+        appState.khadyanna.otherSchools[otherIdx][field] = Math.max(0, roundTo(Number(val) || 0, 3));
+      }
+      saveState();
+      renderApp();
+    }
+
+    /**
+     * ============================================================================
+     * TAB 6: राशि प्रपत्र (COOKING CONVERSION & COOK-CUM-HELPER STATEMENT)
+     * ============================================================================
+     */
+    function renderRashiView(calc) {
+      const s = appState.settings;
+      const cookRows = calc.cookingRows;
+      const cchRows = calc.cchRows;
+
+      const cookTotals = cookRows.reduce(
+        (acc, r) => {
+          acc.open15 = roundTo(acc.open15 + r.open15, 2);
+          acc.rec15 = roundTo(acc.rec15 + r.rec15, 2);
+          acc.tot15 = roundTo(acc.tot15 + r.tot15, 2);
+          acc.ben15 += r.ben15;
+          acc.exp15 = roundTo(acc.exp15 + r.exp15, 2);
+          acc.close15 = roundTo(acc.close15 + r.close15, 2);
+
+          acc.open68 = roundTo(acc.open68 + r.open68, 2);
+          acc.rec68 = roundTo(acc.rec68 + r.rec68, 2);
+          acc.tot68 = roundTo(acc.tot68 + r.tot68, 2);
+          acc.ben68 += r.ben68;
+          acc.exp68 = roundTo(acc.exp68 + r.exp68, 2);
+          acc.close68 = roundTo(acc.close68 + r.close68, 2);
+
+          acc.combinedClose = roundTo(acc.combinedClose + r.combinedClose, 2);
+          return acc;
+        },
+        {
+          open15: 0, rec15: 0, tot15: 0, ben15: 0, exp15: 0, close15: 0,
+          open68: 0, rec68: 0, tot68: 0, ben68: 0, exp68: 0, close68: 0,
+          combinedClose: 0
+        }
+      );
+
+      const cchTotals = cchRows.reduce(
+        (acc, r) => {
+          acc.open = roundTo(acc.open + r.open, 2);
+          acc.rec = roundTo(acc.rec + r.rec, 2);
+          acc.tot = roundTo(acc.tot + r.tot, 2);
+          acc.exp = roundTo(acc.exp + r.exp, 2);
+          acc.close = roundTo(acc.close + r.close, 2);
+          return acc;
+        },
+        { open: 0, rec: 0, tot: 0, exp: 0, close: 0 }
+      );
+
+      return `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-6 space-y-6">
+          <!-- Official Header -->
+          <div class="border-b-2 border-slate-800 pb-3 text-center space-y-1">
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">कार्यालय - PEEO ${s.schoolNameEn}</h2>
+            <h3 class="text-base sm:text-lg font-bold text-govblue-900">एमडीएम मासिक सूचना प्रपत्र (नोडलवार एकजाई) राशि कुकिंग कन्वर्ज़न एवं कुक-कम-हेल्पर</h3>
+            <p class="text-xs sm:text-sm font-bold text-slate-700">माह: ${s.monthHi} ${s.calendarYear} • ब्लॉक: ${s.blockHi}</p>
+          </div>
+
+          <!-- TABLE 1: Cooking Conversion Cost -->
+          <div class="space-y-2">
+            <h4 class="text-sm sm:text-base font-extrabold text-govblue-900 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              1. कुकिंग कन्वर्ज़न राशि सूचना (Cooking Conversion Cost Statement)
+            </h4>
+            <div class="overflow-x-auto table-scroll">
+              <table class="reg-table">
+                <thead>
+                  <tr class="bg-govblue-900 text-white">
+                    <th rowspan="2">क्र.<br/>सं.</th>
+                    <th rowspan="2" class="sticky-col bg-govblue-900 min-w-[140px]">विद्यालय का नाम</th>
+                    <th colspan="6" class="bg-indigo-800">कक्षा 1 से 5 (दर ₹${s.cookCost15} प्रति छात्र)</th>
+                    <th colspan="6" class="bg-emerald-800">कक्षा 6 से 8 (दर ₹${s.cookCost68} प्रति छात्र)</th>
+                    <th rowspan="2" class="bg-amber-700">कुल शेष राशि<br/>(1 से 8 तक)</th>
+                  </tr>
+                  <tr class="bg-slate-100 text-slate-800 text-[11px]">
+                    <th>प्रारंभिक<br/>शेष (₹)</th>
+                    <th>प्राप्त<br/>राशि (₹)</th>
+                    <th>कुल<br/>राशि (₹)</th>
+                    <th>लाभान्वित<br/>छात्र</th>
+                    <th>व्यय<br/>राशि (₹)</th>
+                    <th>शेष<br/>राशि (₹)</th>
+
+                    <th>प्रारंभिक<br/>शेष (₹)</th>
+                    <th>प्राप्त<br/>राशि (₹)</th>
+                    <th>कुल<br/>राशि (₹)</th>
+                    <th>लाभान्वित<br/>छात्र</th>
+                    <th>व्यय<br/>राशि (₹)</th>
+                    <th>शेष<br/>राशि (₹)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${cookRows
+                    .map((r, idx) => {
+                      if (r.isPrimary) {
+                        return `
+                          <tr class="text-center bg-amber-50/70 font-bold">
+                            <td>1</td>
+                            <td class="sticky-col bg-amber-100 text-left font-extrabold text-govblue-950">${r.name}</td>
+                            <td>
+                              <input type="number" step="0.01" value="${r.open15}" onchange="updateMggsCooking('open15', this.value)" class="cell-input" />
+                            </td>
+                            <td>
+                              <input type="number" step="0.01" value="${r.rec15}" onchange="updateMggsCooking('rec15', this.value)" class="cell-input" />
+                            </td>
+                            <td>${fmtNum(r.tot15, 2)}</td>
+                            <td class="text-govblue-900">${r.ben15}</td>
+                            <td class="text-rose-700">${fmtNum(r.exp15, 2)}</td>
+                            <td class="bg-indigo-50 text-govblue-950">${fmtNum(r.close15, 2)}</td>
+
+                            <td>
+                              <input type="number" step="0.01" value="${r.open68}" onchange="updateMggsCooking('open68', this.value)" class="cell-input" />
+                            </td>
+                            <td>
+                              <input type="number" step="0.01" value="${r.rec68}" onchange="updateMggsCooking('rec68', this.value)" class="cell-input" />
+                            </td>
+                            <td>${fmtNum(r.tot68, 2)}</td>
+                            <td class="text-emerald-900">${r.ben68}</td>
+                            <td class="text-rose-700">${fmtNum(r.exp68, 2)}</td>
+                            <td class="bg-emerald-50 text-emerald-950">${fmtNum(r.close68, 2)}</td>
+
+                            <td class="bg-amber-200/70 text-slate-950 font-extrabold">${fmtRs(r.combinedClose)}</td>
+                          </tr>
+                        `;
+                      }
+
+                      const otherIdx = idx - 1;
+                      return `
+                        <tr class="text-center hover:bg-slate-50">
+                          <td class="font-semibold">${idx + 1}</td>
+                          <td class="sticky-col bg-white">
+                            <input type="text" placeholder="विद्यालय नाम..." value="${r.name}" onchange="updateOtherCooking(${otherIdx}, 'name', this.value)" class="cell-input cell-input-text" />
+                          </td>
+                          <td><input type="number" step="0.01" value="${r.open15}" onchange="updateOtherCooking(${otherIdx}, 'open15', this.value)" class="cell-input" /></td>
+                          <td><input type="number" step="0.01" value="${r.rec15}" onchange="updateOtherCooking(${otherIdx}, 'rec15', this.value)" class="cell-input" /></td>
+                          <td class="font-semibold">${fmtNum(r.tot15, 2)}</td>
+                          <td><input type="number" min="0" value="${r.ben15}" onchange="updateOtherCooking(${otherIdx}, 'ben15', this.value)" class="cell-input" /></td>
+                          <td><input type="number" step="0.01" value="${r.exp15}" onchange="updateOtherCooking(${otherIdx}, 'exp15', this.value)" class="cell-input" /></td>
+                          <td class="font-bold bg-slate-50">${fmtNum(r.close15, 2)}</td>
+
+                          <td><input type="number" step="0.01" value="${r.open68}" onchange="updateOtherCooking(${otherIdx}, 'open68', this.value)" class="cell-input" /></td>
+                          <td><input type="number" step="0.01" value="${r.rec68}" onchange="updateOtherCooking(${otherIdx}, 'rec68', this.value)" class="cell-input" /></td>
+                          <td class="font-semibold">${fmtNum(r.tot68, 2)}</td>
+                          <td><input type="number" min="0" value="${r.ben68}" onchange="updateOtherCooking(${otherIdx}, 'ben68', this.value)" class="cell-input" /></td>
+                          <td><input type="number" step="0.01" value="${r.exp68}" onchange="updateOtherCooking(${otherIdx}, 'exp68', this.value)" class="cell-input" /></td>
+                          <td class="font-bold bg-slate-50">${fmtNum(r.close68, 2)}</td>
+
+                          <td class="font-extrabold text-slate-900 bg-amber-50/50">${fmtRs(r.combinedClose)}</td>
+                        </tr>
+                      `;
+                    })
+                    .join('')}
+                </tbody>
+                <tfoot>
+                  <tr class="bg-slate-800 text-white font-extrabold text-center">
+                    <td colspan="2" class="sticky-col bg-slate-800">कुल योग (Total)</td>
+                    <td>${fmtNum(cookTotals.open15, 2)}</td>
+                    <td>${fmtNum(cookTotals.rec15, 2)}</td>
+                    <td>${fmtNum(cookTotals.tot15, 2)}</td>
+                    <td>${cookTotals.ben15}</td>
+                    <td>${fmtNum(cookTotals.exp15, 2)}</td>
+                    <td class="text-indigo-300">${fmtNum(cookTotals.close15, 2)}</td>
+
+                    <td>${fmtNum(cookTotals.open68, 2)}</td>
+                    <td>${fmtNum(cookTotals.rec68, 2)}</td>
+                    <td>${fmtNum(cookTotals.tot68, 2)}</td>
+                    <td>${cookTotals.ben68}</td>
+                    <td>${fmtNum(cookTotals.exp68, 2)}</td>
+                    <td class="text-emerald-300">${fmtNum(cookTotals.close68, 2)}</td>
+
+                    <td class="text-amber-300">${fmtRs(cookTotals.combinedClose)}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- TABLE 2: Cook-Cum-Helper Statement -->
+          <div class="space-y-2 pt-2">
+            <h4 class="text-sm sm:text-base font-extrabold text-govblue-900 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+              2. मासिक सूचना कुक कम हेल्पर राशि सूचना (Cook-Cum-Helper Fund Statement)
+            </h4>
+            <div class="overflow-x-auto table-scroll">
+              <table class="reg-table">
+                <thead>
+                  <tr class="bg-purple-900 text-white">
+                    <th>क्र. सं.</th>
+                    <th class="sticky-col bg-purple-900 min-w-[160px]">विद्यालय का नाम</th>
+                    <th>प्रारंभिक शेष (₹)</th>
+                    <th>प्राप्त राशि (₹)</th>
+                    <th>कुल राशि (₹)</th>
+                    <th>व्यय राशि (₹)</th>
+                    <th>शेष राशि (₹)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${cchRows
+                    .map((r, idx) => {
+                      if (r.isPrimary) {
+                        return `
+                          <tr class="text-center bg-purple-50/70 font-bold">
+                            <td>1</td>
+                            <td class="sticky-col bg-purple-100 text-left font-extrabold text-purple-950">${r.name}</td>
+                            <td>
+                              <input type="number" step="0.01" value="${r.open}" onchange="updateMggsCch('open', this.value)" class="cell-input" />
+                            </td>
+                            <td>
+                              <input type="number" step="0.01" value="${r.rec}" onchange="updateMggsCch('rec', this.value)" class="cell-input" />
+                            </td>
+                            <td>${fmtNum(r.tot, 2)}</td>
+                            <td>
+                              <input type="number" step="0.01" value="${r.exp}" onchange="updateMggsCch('exp', this.value)" class="cell-input" />
+                            </td>
+                            <td class="bg-purple-200/70 text-purple-950 font-extrabold">${fmtRs(r.close)}</td>
+                          </tr>
+                        `;
+                      }
+
+                      const otherIdx = idx - 1;
+                      return `
+                        <tr class="text-center hover:bg-slate-50">
+                          <td class="font-semibold">${idx + 1}</td>
+                          <td class="sticky-col bg-white">
+                            <input type="text" placeholder="विद्यालय नाम..." value="${r.name}" onchange="updateOtherCch(${otherIdx}, 'name', this.value)" class="cell-input cell-input-text" />
+                          </td>
+                          <td><input type="number" step="0.01" value="${r.open}" onchange="updateOtherCch(${otherIdx}, 'open', this.value)" class="cell-input" /></td>
+                          <td><input type="number" step="0.01" value="${r.rec}" onchange="updateOtherCch(${otherIdx}, 'rec', this.value)" class="cell-input" /></td>
+                          <td class="font-semibold">${fmtNum(r.tot, 2)}</td>
+                          <td><input type="number" step="0.01" value="${r.exp}" onchange="updateOtherCch(${otherIdx}, 'exp', this.value)" class="cell-input" /></td>
+                          <td class="font-bold bg-slate-50">${fmtRs(r.close)}</td>
+                        </tr>
+                      `;
+                    })
+                    .join('')}
+                </tbody>
+                <tfoot>
+                  <tr class="bg-slate-800 text-white font-extrabold text-center">
+                    <td colspan="2" class="sticky-col bg-slate-800">कुल योग (Total)</td>
+                    <td>${fmtNum(cchTotals.open, 2)}</td>
+                    <td>${fmtNum(cchTotals.rec, 2)}</td>
+                    <td>${fmtNum(cchTotals.tot, 2)}</td>
+                    <td>${fmtNum(cchTotals.exp, 2)}</td>
+                    <td class="text-amber-300">${fmtRs(cchTotals.close)}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- Signature Block -->
+          <div class="pt-6 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div class="text-xs font-bold text-slate-600">
+              नोट: राशि विवरण रोकड़ बही एवं पासबुक मिलान अनुसार प्रमाणित है।
+            </div>
+            <div class="text-center text-xs sm:text-sm font-bold text-slate-800 pt-4">
+              <div class="w-56 border-b border-dashed border-slate-500 mb-1.5 mx-auto"></div>
+              <p>हस्ताक्षर PEEO / संस्था प्रधान (मय सील)</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateMggsCooking(field, val) {
+      appState.rashi.mggsCooking[field] = roundTo(Number(val) || 0, 2);
+      saveState();
+      renderApp();
+    }
+
+    function updateOtherCooking(otherIdx, field, val) {
+      if (field === 'name') {
+        appState.rashi.otherCookingSchools[otherIdx].name = val;
+      } else if (field === 'ben15' || field === 'ben68') {
+        const ben = Math.max(0, Math.round(Number(val) || 0));
+        appState.rashi.otherCookingSchools[otherIdx][field] = ben;
+        // Also auto-compute expenditure using norm rate if exp wasn't manually overridden
+        const rate = field === 'ben15' ? appState.settings.cookCost15 : appState.settings.cookCost68;
+        const expField = field === 'ben15' ? 'exp15' : 'exp68';
+        appState.rashi.otherCookingSchools[otherIdx][expField] = roundTo(ben * rate, 2);
+      } else {
+        appState.rashi.otherCookingSchools[otherIdx][field] = roundTo(Number(val) || 0, 2);
+      }
+      saveState();
+      renderApp();
+    }
+
+    function updateMggsCch(field, val) {
+      appState.rashi.mggsCch[field] = roundTo(Number(val) || 0, 2);
+      saveState();
+      renderApp();
+    }
+
+    function updateOtherCch(otherIdx, field, val) {
+      if (field === 'name') {
+        appState.rashi.otherCchSchools[otherIdx].name = val;
+      } else {
+        appState.rashi.otherCchSchools[otherIdx][field] = roundTo(Number(val) || 0, 2);
+      }
+      saveState();
+      renderApp();
+    }
+
+    /**
+     * ============================================================================
+     * TAB 7: PM POSHAN MDCF (SCHOOL MONTHLY DATA CAPTURE FORMAT)
+     * ============================================================================
+     */
+    function renderMdcfView(calc) {
+      const s = appState.settings;
+      const m = appState.mdcf;
+      const cook1 = calc.cookingRows[0];
+      const cch1 = calc.cchRows[0];
+      const k = calc.mggsKhadyannaRow;
+
+      const bvFundTot = roundTo((Number(m.bvFund.open) || 0) + (Number(m.bvFund.rec) || 0), 2);
+      const bvFundClose = roundTo(bvFundTot - (Number(m.bvFund.exp) || 0), 2);
+
+      const mmeTot = roundTo((Number(m.mmeFund.open) || 0) + (Number(m.mmeFund.rec) || 0), 2);
+      const mmeClose = roundTo(mmeTot - (Number(m.mmeFund.exp) || 0), 2);
+
+      const bvGrainAvail = roundTo((Number(m.bvGrain.open) || 0) + (Number(m.bvGrain.rec) || 0), 3);
+      const bvGrainClose = roundTo(bvGrainAvail - (Number(m.bvGrain.exp) || 0), 3);
+
+      return `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-6 space-y-6">
+          <!-- Official MDCF Banner -->
+          <div class="border-b-2 border-govblue-900 pb-3 text-center space-y-1">
+            <div class="inline-block px-3 py-0.5 rounded-full bg-indigo-100 text-govblue-900 font-bold text-xs">
+              MINISTRY OF EDUCATION • PM POSHAN SCHEME (FORM MDCF)
+            </div>
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">
+              PM POSHAN — School Monthly Data Capture Format (MDCF)
+            </h2>
+            <p class="text-xs sm:text-sm font-bold text-slate-700">
+              Month-Year: <strong class="text-govblue-900">${s.monthEn} ${s.calendarYear} (${s.monthHi} ${s.session})</strong> • UDISE: <strong class="text-govblue-900">${s.udise}</strong>
+            </p>
+          </div>
+
+          <!-- SECTION 1: School Details -->
+          <section class="space-y-2">
+            <h3 class="text-sm font-extrabold uppercase tracking-wide bg-govblue-900 text-white px-3 py-1.5 rounded-lg">
+              1. School Details (विद्यालय का विवरण)
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="reg-table text-left">
+                <tbody>
+                  <tr>
+                    <th class="bg-slate-100 text-left w-1/6">Month - Year</th>
+                    <td class="font-bold w-1/3">${s.monthEn} ${s.calendarYear} (${s.monthHi})</td>
+                    <th class="bg-slate-100 text-left w-1/6">UDISE Code</th>
+                    <td class="font-mono font-bold w-1/3">${s.udise}</td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">School Name</th>
+                    <td class="font-extrabold text-govblue-950">${s.schoolNameEn} (${s.schoolNameHi})</td>
+                    <th class="bg-slate-100 text-left">School Type</th>
+                    <td>${s.schoolType}</td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">School Category</th>
+                    <td>${s.schoolCategory}</td>
+                    <th class="bg-slate-100 text-left">State / District</th>
+                    <td>${s.state} / ${s.district}</td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">Block / Village</th>
+                    <td>${s.blockEn} (${s.blockHi}) / ${s.village}</td>
+                    <th class="bg-slate-100 text-left">Kitchen Type</th>
+                    <td>
+                      <input type="text" value="${s.kitchenType}" onchange="updateSettingField('kitchenType', this.value)" class="cell-input cell-input-text" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">NGO / SHG / Agency</th>
+                    <td>
+                      <input type="text" value="${s.implementingAgency}" onchange="updateSettingField('implementingAgency', this.value)" class="cell-input cell-input-text" />
+                    </td>
+                    <th class="bg-slate-100 text-left">Total Enrolment</th>
+                    <td class="font-extrabold">
+                      ${calc.totalEnrolment} <span class="text-xs font-semibold text-slate-600">(Primary 1-5: ${s.enrol15}, Upper Primary 6-8: ${s.enrol68})</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- SECTION 2: Meals Availed Status -->
+          <section class="space-y-2">
+            <h3 class="text-sm font-extrabold uppercase tracking-wide bg-govblue-900 text-white px-3 py-1.5 rounded-lg">
+              2. Meals Availed Status (लाभान्वित भोजन दिवस एवं छात्र संख्या)
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="reg-table">
+                <thead class="bg-slate-100 text-slate-800">
+                  <tr>
+                    <th>Category (कक्षा वर्ग)</th>
+                    <th>Enrolment (नामांकन)</th>
+                    <th>Number of School Days</th>
+                    <th>Actual MDM Days Served (Auto)</th>
+                    <th>Total Meals Served (Auto)</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                  <tr>
+                    <td class="text-left font-bold">Bal Vatika</td>
+                    <td>0</td>
+                    <td><input type="number" min="0" value="${m.schoolDaysBv}" onchange="updateMdcfField('schoolDaysBv', this.value)" class="cell-input max-w-[90px]" /></td>
+                    <td><input type="number" min="0" value="${m.bvActualDays}" onchange="updateMdcfField('bvActualDays', this.value)" class="cell-input max-w-[90px]" /></td>
+                    <td><input type="number" min="0" value="${m.bvMeals}" onchange="updateMdcfField('bvMeals', this.value)" class="cell-input max-w-[90px]" /></td>
+                  </tr>
+                  <tr class="bg-indigo-50/40 font-semibold">
+                    <td class="text-left font-bold text-govblue-950">Primary (Class 1–5)</td>
+                    <td class="font-bold">${s.enrol15}</td>
+                    <td><input type="number" min="0" value="${m.schoolDaysPri}" onchange="updateMdcfField('schoolDaysPri', this.value)" class="cell-input max-w-[90px]" /></td>
+                    <td class="font-bold text-govblue-900">${calc.p15.totals.activeDays}</td>
+                    <td class="font-extrabold text-govblue-900">${calc.p15.totals.students}</td>
+                  </tr>
+                  <tr class="bg-emerald-50/40 font-semibold">
+                    <td class="text-left font-bold text-emerald-950">Upper Primary (Class 6–8)</td>
+                    <td class="font-bold">${s.enrol68}</td>
+                    <td><input type="number" min="0" value="${m.schoolDaysUpri}" onchange="updateMdcfField('schoolDaysUpri', this.value)" class="cell-input max-w-[90px]" /></td>
+                    <td class="font-bold text-emerald-900">${calc.p68.totals.activeDays}</td>
+                    <td class="font-extrabold text-emerald-900">${calc.p68.totals.students}</td>
+                  </tr>
+                  <tr class="bg-slate-800 text-white font-extrabold">
+                    <td class="text-left">Total (1 to 8)</td>
+                    <td>${calc.totalEnrolment}</td>
+                    <td>—</td>
+                    <td>${calc.activeMdmDays}</td>
+                    <td class="text-amber-300">${calc.p15.totals.students + calc.p68.totals.students}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- SECTION 3: Fund Details (in Rs.) -->
+          <section class="space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2 bg-govblue-900 text-white px-3 py-1.5 rounded-lg">
+              <h3 class="text-sm font-extrabold uppercase tracking-wide">
+                3. Fund Details (in Rs. / राशि विवरण ₹ में)
+              </h3>
+              <div class="flex items-center gap-3 text-xs font-bold">
+                <span>Bank Reconciliation Completed?</span>
+                <label class="inline-flex items-center gap-1 cursor-pointer">
+                  <input type="radio" name="bankRec" value="Yes" ${m.bankReconciled === 'Yes' ? 'checked' : ''} onchange="updateMdcfField('bankReconciled', 'Yes')" class="accent-amber-400" />
+                  <span>Yes</span>
+                </label>
+                <label class="inline-flex items-center gap-1 cursor-pointer">
+                  <input type="radio" name="bankRec" value="No" ${m.bankReconciled === 'No' ? 'checked' : ''} onchange="updateMdcfField('bankReconciled', 'No')" class="accent-amber-400" />
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="reg-table">
+                <thead class="bg-slate-100 text-slate-800">
+                  <tr>
+                    <th>Component (मद)</th>
+                    <th>Opening Balance (₹)</th>
+                    <th>Received during Month (₹)</th>
+                    <th>Total Available (₹)</th>
+                    <th>Expenditure during Month (₹)</th>
+                    <th>Closing Balance (₹)</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                  <tr>
+                    <td class="text-left font-semibold">Bal Vatika Cooking Cost</td>
+                    <td><input type="number" step="0.01" value="${m.bvFund.open}" onchange="updateMdcfSubFund('bvFund', 'open', this.value)" class="cell-input max-w-[100px]" /></td>
+                    <td><input type="number" step="0.01" value="${m.bvFund.rec}" onchange="updateMdcfSubFund('bvFund', 'rec', this.value)" class="cell-input max-w-[100px]" /></td>
+                    <td class="font-semibold">${fmtNum(bvFundTot, 2)}</td>
+                    <td><input type="number" step="0.01" value="${m.bvFund.exp}" onchange="updateMdcfSubFund('bvFund', 'exp', this.value)" class="cell-input max-w-[100px]" /></td>
+                    <td class="font-bold">${fmtNum(bvFundClose, 2)}</td>
+                  </tr>
+                  <tr class="bg-indigo-50/40 font-semibold">
+                    <td class="text-left font-bold text-govblue-950">Primary Cooking Cost (1–5) [Auto]</td>
+                    <td>${fmtNum(cook1.open15, 2)}</td>
+                    <td>${fmtNum(cook1.rec15, 2)}</td>
+                    <td>${fmtNum(cook1.tot15, 2)}</td>
+                    <td class="text-rose-700">${fmtNum(cook1.exp15, 2)}</td>
+                    <td class="font-extrabold text-govblue-900">${fmtNum(cook1.close15, 2)}</td>
+                  </tr>
+                  <tr class="bg-emerald-50/40 font-semibold">
+                    <td class="text-left font-bold text-emerald-950">Upper Primary Cooking Cost (6–8) [Auto]</td>
+                    <td>${fmtNum(cook1.open68, 2)}</td>
+                    <td>${fmtNum(cook1.rec68, 2)}</td>
+                    <td>${fmtNum(cook1.tot68, 2)}</td>
+                    <td class="text-rose-700">${fmtNum(cook1.exp68, 2)}</td>
+                    <td class="font-extrabold text-emerald-900">${fmtNum(cook1.close68, 2)}</td>
+                  </tr>
+                  <tr class="bg-purple-50/40 font-semibold">
+                    <td class="text-left font-bold text-purple-950">Cook Cum Helper Honorarium [Auto]</td>
+                    <td>${fmtNum(cch1.open, 2)}</td>
+                    <td>${fmtNum(cch1.rec, 2)}</td>
+                    <td>${fmtNum(cch1.tot, 2)}</td>
+                    <td class="text-rose-700">${fmtNum(cch1.exp, 2)}</td>
+                    <td class="font-extrabold text-purple-900">${fmtNum(cch1.close, 2)}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left font-semibold">MME Expenses</td>
+                    <td><input type="number" step="0.01" value="${m.mmeFund.open}" onchange="updateMdcfSubFund('mmeFund', 'open', this.value)" class="cell-input max-w-[100px]" /></td>
+                    <td><input type="number" step="0.01" value="${m.mmeFund.rec}" onchange="updateMdcfSubFund('mmeFund', 'rec', this.value)" class="cell-input max-w-[100px]" /></td>
+                    <td class="font-semibold">${fmtNum(mmeTot, 2)}</td>
+                    <td><input type="number" step="0.01" value="${m.mmeFund.exp}" onchange="updateMdcfSubFund('mmeFund', 'exp', this.value)" class="cell-input max-w-[100px]" /></td>
+                    <td class="font-bold">${fmtNum(mmeClose, 2)}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- SECTION 4: Cook Cum Helper Payment Details -->
+          <section class="space-y-2">
+            <div class="flex items-center justify-between bg-govblue-900 text-white px-3 py-1.5 rounded-lg">
+              <h3 class="text-sm font-extrabold uppercase tracking-wide">
+                4. Cook Cum Helper Payment Details (कुक-कम-हेल्पर मानदेय विवरण)
+              </h3>
+              <button onclick="addMdcfCook()" class="no-print px-2.5 py-0.5 rounded bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs">
+                + कुक जोड़ें (Add Cook)
+              </button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="reg-table">
+                <thead class="bg-slate-100 text-slate-800">
+                  <tr>
+                    <th>S.No.</th>
+                    <th>Cook Cum Helper Name</th>
+                    <th>Gender (M/F)</th>
+                    <th>Social Category</th>
+                    <th>Payment Mode</th>
+                    <th>Amount Paid (₹)</th>
+                    <th class="no-print">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                  ${m.cooks
+                    .map(
+                      (ck, idx) => `
+                    <tr>
+                      <td class="font-bold">${idx + 1}</td>
+                      <td>
+                        <input type="text" value="${ck.name}" onchange="updateMdcfCook(${idx}, 'name', this.value)" class="cell-input cell-input-text font-bold" />
+                      </td>
+                      <td>
+                        <select onchange="updateMdcfCook(${idx}, 'gender', this.value)" class="cell-select">
+                          <option value="F" ${ck.gender === 'F' ? 'selected' : ''}>F</option>
+                          <option value="M" ${ck.gender === 'M' ? 'selected' : ''}>M</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select onchange="updateMdcfCook(${idx}, 'category', this.value)" class="cell-select">
+                          <option value="OBC" ${ck.category === 'OBC' ? 'selected' : ''}>OBC</option>
+                          <option value="GEN" ${ck.category === 'GEN' ? 'selected' : ''}>GEN</option>
+                          <option value="SC" ${ck.category === 'SC' ? 'selected' : ''}>SC</option>
+                          <option value="ST" ${ck.category === 'ST' ? 'selected' : ''}>ST</option>
+                          <option value="SBC" ${ck.category === 'SBC' ? 'selected' : ''}>SBC</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select onchange="updateMdcfCook(${idx}, 'paymentMode', this.value)" class="cell-select">
+                          <option value="Bank" ${ck.paymentMode === 'Bank' ? 'selected' : ''}>Bank</option>
+                          <option value="Cash" ${ck.paymentMode === 'Cash' ? 'selected' : ''}>Cash</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input type="number" step="0.01" value="${ck.amount}" onchange="updateMdcfCook(${idx}, 'amount', this.value)" class="cell-input max-w-[110px]" />
+                      </td>
+                      <td class="no-print">
+                        <button onclick="removeMdcfCook(${idx})" class="px-2 py-0.5 rounded bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold">हटाएं</button>
+                      </td>
+                    </tr>
+                  `
+                    )
+                    .join('')}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- SECTION 5: Food Grains Details (in KG.) -->
+          <section class="space-y-2">
+            <h3 class="text-sm font-extrabold uppercase tracking-wide bg-govblue-900 text-white px-3 py-1.5 rounded-lg">
+              5. Food Grains Details (in KG. / खाद्यान्न विवरण कि.ग्रा. में) [Auto-Linked]
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="reg-table">
+                <thead class="bg-slate-100 text-slate-800">
+                  <tr>
+                    <th>Category & Grain Type</th>
+                    <th>Opening Balance (kg)</th>
+                    <th>Quantity Received (kg)</th>
+                    <th>Total Available (kg)</th>
+                    <th>Consumed during Month (kg)</th>
+                    <th>Closing Balance (kg)</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                  <tr>
+                    <td class="text-left font-semibold">Bal Vatika (Food Grains)</td>
+                    <td><input type="number" step="0.001" value="${m.bvGrain.open}" onchange="updateMdcfSubFund('bvGrain', 'open', this.value)" class="cell-input max-w-[95px]" /></td>
+                    <td><input type="number" step="0.001" value="${m.bvGrain.rec}" onchange="updateMdcfSubFund('bvGrain', 'rec', this.value)" class="cell-input max-w-[95px]" /></td>
+                    <td>${fmtQty(bvGrainAvail)}</td>
+                    <td><input type="number" step="0.001" value="${m.bvGrain.exp}" onchange="updateMdcfSubFund('bvGrain', 'exp', this.value)" class="cell-input max-w-[95px]" /></td>
+                    <td class="font-bold">${fmtQty(bvGrainClose)}</td>
+                  </tr>
+                  <tr class="bg-amber-50/40 font-semibold">
+                    <td class="text-left font-bold text-amber-950">Primary (1–5) — Wheat (गेहूँ)</td>
+                    <td>${fmtQty(k.w15Open)}</td>
+                    <td>${fmtQty(k.w15Rec)}</td>
+                    <td>${fmtQty(k.w15Avail)}</td>
+                    <td class="text-amber-800">${fmtQty(k.w15Exp)}</td>
+                    <td class="font-extrabold text-slate-950">${fmtQty(k.w15Close)}</td>
+                  </tr>
+                  <tr class="bg-teal-50/40 font-semibold">
+                    <td class="text-left font-bold text-teal-950">Primary (1–5) — Rice (चावल)</td>
+                    <td>${fmtQty(k.r15Open)}</td>
+                    <td>${fmtQty(k.r15Rec)}</td>
+                    <td>${fmtQty(k.r15Avail)}</td>
+                    <td class="text-teal-800">${fmtQty(k.r15Exp)}</td>
+                    <td class="font-extrabold text-slate-950">${fmtQty(k.r15Close)}</td>
+                  </tr>
+                  <tr class="bg-orange-50/40 font-semibold">
+                    <td class="text-left font-bold text-orange-950">Upper Primary (6–8) — Wheat (गेहूँ)</td>
+                    <td>${fmtQty(k.w68Open)}</td>
+                    <td>${fmtQty(k.w68Rec)}</td>
+                    <td>${fmtQty(k.w68Avail)}</td>
+                    <td class="text-orange-800">${fmtQty(k.w68Exp)}</td>
+                    <td class="font-extrabold text-slate-950">${fmtQty(k.w68Close)}</td>
+                  </tr>
+                  <tr class="bg-cyan-50/40 font-semibold">
+                    <td class="text-left font-bold text-cyan-950">Upper Primary (6–8) — Rice (चावल)</td>
+                    <td>${fmtQty(k.r68Open)}</td>
+                    <td>${fmtQty(k.r68Rec)}</td>
+                    <td>${fmtQty(k.r68Avail)}</td>
+                    <td class="text-cyan-800">${fmtQty(k.r68Exp)}</td>
+                    <td class="font-extrabold text-slate-950">${fmtQty(k.r68Close)}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- SECTION 6 & SECTION 7 Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- SECTION 6: Children Health Status -->
+            <section class="space-y-2">
+              <h3 class="text-sm font-extrabold uppercase tracking-wide bg-govblue-900 text-white px-3 py-1.5 rounded-lg">
+                6. Children Health Status (स्वास्थ्य एवं IFA विवरण)
+              </h3>
+              <table class="reg-table">
+                <tbody>
+                  <tr>
+                    <th class="bg-slate-100 text-left">4 IFA Tablets Distributed (Boys)</th>
+                    <td class="w-28 text-center">
+                      <input type="number" min="0" value="${m.health.ifaBoys}" onchange="updateMdcfNested('health', 'ifaBoys', this.value)" class="cell-input" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">4 IFA Tablets Distributed (Girls)</th>
+                    <td class="text-center">
+                      <input type="number" min="0" value="${m.health.ifaGirls}" onchange="updateMdcfNested('health', 'ifaGirls', this.value)" class="cell-input" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">Children Screened by RBSK Team</th>
+                    <td class="text-center">
+                      <input type="number" min="0" value="${m.health.screenedRbsk}" onchange="updateMdcfNested('health', 'screenedRbsk', this.value)" class="cell-input" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">Children Referred by RBSK Team</th>
+                    <td class="text-center">
+                      <input type="number" min="0" value="${m.health.referredRbsk}" onchange="updateMdcfNested('health', 'referredRbsk', this.value)" class="cell-input" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- SECTION 7: School Inspection -->
+            <section class="space-y-2">
+              <div class="flex items-center justify-between bg-govblue-900 text-white px-3 py-1.5 rounded-lg">
+                <h3 class="text-sm font-extrabold uppercase tracking-wide">
+                  7. School Inspection (विद्यालय निरीक्षण)
+                </h3>
+                <div class="flex items-center gap-2 text-xs font-bold">
+                  <span>Inspected?</span>
+                  <label class="inline-flex items-center gap-1 cursor-pointer">
+                    <input type="radio" name="inspected" value="Yes" ${m.inspection.inspected === 'Yes' ? 'checked' : ''} onchange="updateMdcfNested('inspection', 'inspected', 'Yes')" class="accent-amber-400" />
+                    <span>Yes</span>
+                  </label>
+                  <label class="inline-flex items-center gap-1 cursor-pointer">
+                    <input type="radio" name="inspected" value="No" ${m.inspection.inspected === 'No' ? 'checked' : ''} onchange="updateMdcfNested('inspection', 'inspected', 'No')" class="accent-amber-400" />
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+              <table class="reg-table">
+                <tbody>
+                  <tr>
+                    <th class="bg-slate-100 text-left">Inspected by Task Force</th>
+                    <td class="w-28 text-center">
+                      <input type="number" min="0" value="${m.inspection.taskForce}" onchange="updateMdcfNested('inspection', 'taskForce', this.value)" class="cell-input" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">Inspected by District Officials</th>
+                    <td class="text-center">
+                      <input type="number" min="0" value="${m.inspection.districtOfficials}" onchange="updateMdcfNested('inspection', 'districtOfficials', this.value)" class="cell-input" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">Inspected by Block / Taluka Officials</th>
+                    <td class="text-center">
+                      <input type="number" min="0" value="${m.inspection.blockOfficials}" onchange="updateMdcfNested('inspection', 'blockOfficials', this.value)" class="cell-input" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="bg-slate-100 text-left">Inspected by SMC Members</th>
+                    <td class="text-center">
+                      <input type="number" min="0" value="${m.inspection.smcMembers}" onchange="updateMdcfNested('inspection', 'smcMembers', this.value)" class="cell-input" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="bg-rose-50 text-rose-900 text-left">Number of Untoward Incidents Occurred</th>
+                    <td class="text-center">
+                      <input type="number" min="0" value="${m.inspection.untowardIncidents}" onchange="updateMdcfNested('inspection', 'untowardIncidents', this.value)" class="cell-input" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          </div>
+
+          <!-- Official MDCF Signature Line -->
+          <div class="pt-6 pb-2 px-4 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8 text-xs sm:text-sm font-bold text-slate-800">
+            <div class="text-center">
+              <div class="w-56 border-b border-dashed border-slate-500 mb-1.5"></div>
+              <p>Signature of MDM In-charge / Teacher</p>
+            </div>
+            <div class="text-center">
+              <div class="w-56 border-b border-dashed border-slate-500 mb-1.5"></div>
+              <p>Signature of Headmaster / Principal (With Seal)</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateSettingField(field, val) {
+      appState.settings[field] = val;
+      saveState();
+      renderApp();
+    }
+
+    function updateMdcfField(field, val) {
+      appState.mdcf[field] = field === 'bankReconciled' ? val : Math.max(0, Math.round(Number(val) || 0));
+      saveState();
+      renderApp();
+    }
+
+    function updateMdcfSubFund(group, field, val) {
+      appState.mdcf[group][field] = roundTo(Number(val) || 0, group === 'bvGrain' ? 3 : 2);
+      saveState();
+      renderApp();
+    }
+
+    function updateMdcfNested(section, field, val) {
+      if (field === 'inspected') {
+        appState.mdcf[section][field] = val;
+      } else {
+        appState.mdcf[section][field] = Math.max(0, Math.round(Number(val) || 0));
+      }
+      saveState();
+      renderApp();
+    }
+
+    function addMdcfCook() {
+      appState.mdcf.cooks.push({
+        id: 'ck_' + Date.now(),
+        name: '',
+        gender: 'F',
+        category: 'OBC',
+        paymentMode: 'Bank',
+        amount: 2467
+      });
+      saveState();
+      renderApp();
+    }
+
+    function updateMdcfCook(idx, field, val) {
+      if (field === 'amount') {
+        appState.mdcf.cooks[idx].amount = Math.max(0, roundTo(Number(val) || 0, 2));
+      } else {
+        appState.mdcf.cooks[idx][field] = val;
+      }
+      saveState();
+      renderApp();
+    }
+
+    function removeMdcfCook(idx) {
+      appState.mdcf.cooks.splice(idx, 1);
+      saveState();
+      renderApp();
+    }
+
+    /**
+     * ============================================================================
+     * MODAL 2: GLOBAL SCHOOL & NORM RATES SETTINGS
+     * ============================================================================
+     */
+    function openSettingsModal() {
+      const s = appState.settings;
+      const body = document.getElementById('settingsModalBody');
+      if (!body) return;
+
+      body.innerHTML = `
+        <form onsubmit="saveGlobalSettings(event)" class="space-y-5">
+          <div>
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-govblue-900 mb-2.5 border-b pb-1">
+              विद्यालय विवरण (School Identity & Session)
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">School Name (English)</label>
+                <input type="text" id="set_schoolNameEn" value="${s.schoolNameEn}" class="w-full rounded-lg border border-slate-300 px-3 py-2 font-bold" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block font-bold text-slate-700 mb-1">विद्यालय का नाम (हिन्दी)</label>
+                <input type="text" id="set_schoolNameHi" value="${s.schoolNameHi}" class="w-full rounded-lg border border-slate-300 px-3 py-2 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">UDISE Code</label>
+                <input type="text" id="set_udise" value="${s.udise}" class="w-full rounded-lg border border-slate-300 px-3 py-2 font-mono font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Block (English / हिन्दी)</label>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <input type="text" id="set_blockEn" value="${s.blockEn}" class="w-full rounded-lg border border-slate-300 px-2.5 py-2 font-bold" />
+                  <input type="text" id="set_blockHi" value="${s.blockHi}" class="w-full rounded-lg border border-slate-300 px-2.5 py-2 font-bold" />
+                </div>
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">District / State</label>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <input type="text" id="set_district" value="${s.district}" class="w-full rounded-lg border border-slate-300 px-2.5 py-2 font-bold" />
+                  <input type="text" id="set_state" value="${s.state}" class="w-full rounded-lg border border-slate-300 px-2.5 py-2 font-bold" />
+                </div>
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">माह (हिन्दी / English)</label>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <input type="text" id="set_monthHi" value="${s.monthHi}" class="w-full rounded-lg border border-slate-300 px-2.5 py-2 font-bold" />
+                  <input type="text" id="set_monthEn" value="${s.monthEn}" class="w-full rounded-lg border border-slate-300 px-2.5 py-2 font-bold" />
+                </div>
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">सत्र / वर्ष (Session / Year)</label>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <input type="text" id="set_session" value="${s.session}" class="w-full rounded-lg border border-slate-300 px-2.5 py-2 font-bold" />
+                  <input type="text" id="set_calendarYear" value="${s.calendarYear}" class="w-full rounded-lg border border-slate-300 px-2.5 py-2 font-bold" />
+                </div>
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">नामांकन (कक्षा 1-5 / कक्षा 6-8)</label>
+                <div class="grid grid-cols-2 gap-1.5">
+                  <input type="number" min="0" id="set_enrol15" value="${s.enrol15}" class="w-full rounded-lg border border-indigo-300 bg-indigo-50/50 px-2.5 py-2 font-extrabold text-center" />
+                  <input type="number" min="0" id="set_enrol68" value="${s.enrol68}" class="w-full rounded-lg border border-emerald-300 bg-emerald-50/50 px-2.5 py-2 font-extrabold text-center" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-amber-800 mb-2.5 border-b pb-1">
+              सरकारी मानक दरें (Customizable Norm Rates)
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">कुकिंग कन्वर्ज़न 1-5 (₹)</label>
+                <input type="number" step="0.01" id="set_cookCost15" value="${s.cookCost15}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">कुकिंग कन्वर्ज़न 6-8 (₹)</label>
+                <input type="number" step="0.01" id="set_cookCost68" value="${s.cookCost68}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">खाद्यान्न 1-5 (kg)</label>
+                <input type="number" step="0.001" id="set_grain15" value="${s.grain15}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">खाद्यान्न 6-8 (kg)</label>
+                <input type="number" step="0.001" id="set_grain68" value="${s.grain68}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">दुग्ध पाउडर 1-5 (g)</label>
+                <input type="number" step="0.1" id="set_milkPowder15" value="${s.milkPowder15}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">दुग्ध पाउडर 6-8 (g)</label>
+                <input type="number" step="0.1" id="set_milkPowder68" value="${s.milkPowder68}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">चीनी 1-5 (g)</label>
+                <input type="number" step="0.1" id="set_sugar15" value="${s.sugar15}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">चीनी 6-8 (g)</label>
+                <input type="number" step="0.1" id="set_sugar68" value="${s.sugar68}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">चीनी दर (₹/kg)</label>
+                <input type="number" step="0.01" id="set_sugarRate" value="${s.sugarRate}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">गैस दर 1-5 (₹)</label>
+                <input type="number" step="0.01" id="set_gas15" value="${s.gas15}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">गैस दर 6-8 (₹)</label>
+                <input type="number" step="0.01" id="set_gas68" value="${s.gas68}" class="w-full rounded-lg border border-slate-300 px-2.5 py-1.5 font-bold" />
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-end gap-2 pt-2 border-t">
+            <button type="button" onclick="closeModal('settingsModal')" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs">बंद करें</button>
+            <button type="submit" class="px-5 py-2 rounded-xl bg-govblue-900 hover:bg-govblue-800 text-white font-extrabold text-xs shadow">सेटिंग्स सेव करें</button>
+          </div>
+        </form>
+      `;
+      openModal('settingsModal');
+    }
+
+    function saveGlobalSettings(e) {
+      e.preventDefault();
+      const s = appState.settings;
+      s.schoolNameEn = document.getElementById('set_schoolNameEn').value.trim() || 'MGGS AARNI';
+      s.schoolNameHi = document.getElementById('set_schoolNameHi').value.trim() || 'महात्मा गांधी राजकीय विद्यालय आरनी';
+      s.udise = document.getElementById('set_udise').value.trim();
+      s.blockEn = document.getElementById('set_blockEn').value.trim();
+      s.blockHi = document.getElementById('set_blockHi').value.trim();
+      s.district = document.getElementById('set_district').value.trim();
+      s.state = document.getElementById('set_state').value.trim();
+      s.monthHi = document.getElementById('set_monthHi').value.trim();
+      s.monthEn = document.getElementById('set_monthEn').value.trim();
+      s.session = document.getElementById('set_session').value.trim();
+      s.calendarYear = document.getElementById('set_calendarYear').value.trim();
+      s.enrol15 = Math.max(0, Math.round(Number(document.getElementById('set_enrol15').value) || 0));
+      s.enrol68 = Math.max(0, Math.round(Number(document.getElementById('set_enrol68').value) || 0));
+
+      s.cookCost15 = Number(document.getElementById('set_cookCost15').value) || 6.78;
+      s.cookCost68 = Number(document.getElementById('set_cookCost68').value) || 10.17;
+      s.grain15 = Number(document.getElementById('set_grain15').value) || 0.1;
+      s.grain68 = Number(document.getElementById('set_grain68').value) || 0.15;
+      s.milkPowder15 = Number(document.getElementById('set_milkPowder15').value) || 15;
+      s.milkPowder68 = Number(document.getElementById('set_milkPowder68').value) || 20;
+      s.sugar15 = Number(document.getElementById('set_sugar15').value) || 8.4;
+      s.sugar68 = Number(document.getElementById('set_sugar68').value) || 10.2;
+      s.sugarRate = Number(document.getElementById('set_sugarRate').value) || 45;
+      s.gas15 = Number(document.getElementById('set_gas15').value) || 0.45;
+      s.gas68 = Number(document.getElementById('set_gas68').value) || 0.60;
+
+      saveState();
+      closeModal('settingsModal');
+      renderApp();
+    }
+
+    /**
+     * ============================================================================
+     * MODAL 3: BACKUP / CSV EXPORT / JSON IMPORT / SAMPLE RESET
+     * ============================================================================
+     */
+    function openBackupModal() {
+      const body = document.getElementById('backupModalBody');
+      if (!body) return;
+
+      body.innerHTML = `
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button onclick="exportJsonBackup()" class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/70 hover:bg-indigo-100 text-left transition">
+            <div class="font-extrabold text-govblue-900 text-sm">1. JSON बैकअप डाउनलोड करें</div>
+            <div class="text-xs text-slate-600 mt-1">सभी 7 टैब का पूरा डेटा सुरक्षित फाइल में सेव करें</div>
+          </button>
+
+          <button onclick="exportCurrentCsv()" class="p-4 rounded-xl border border-emerald-200 bg-emerald-50/70 hover:bg-emerald-100 text-left transition">
+            <div class="font-extrabold text-emerald-900 text-sm">2. एक्सेल (CSV) एक्सपोर्ट करें</div>
+            <div class="text-xs text-slate-600 mt-1">वर्तमान खुले हुए रजिस्टर को Excel-ready CSV में डाउनलोड करें</div>
+          </button>
+        </div>
+
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
+          <div class="font-bold text-slate-800 text-xs">3. पुरानी बैकअप फाइल रीस्टोर करें (Import JSON)</div>
+          <input type="file" accept=".json" onchange="importJsonBackup(event)" class="block w-full text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-slate-800 file:text-white hover:file:bg-slate-700" />
+        </div>
+
+        <div class="p-4 rounded-xl border border-rose-200 bg-rose-50/70 space-y-2.5">
+          <div class="font-extrabold text-rose-900 text-xs">4. सैंपल डेटा रीसेट (Reset to MGGS AARNI October Sample)</div>
+          <p class="text-xs text-rose-800">यदि आप सभी प्रविष्टियों को हटाकर पुनः MGGS AARNI के मूल अक्टूबर 2026-27 सैंपल डेटा पर लौटना चाहते हैं:</p>
+          <div id="resetConfirmArea">
+            <button onclick="showInlineResetConfirm()" class="px-3.5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs">
+              रीसेट विकल्प दिखाएं (Reset Sample Data)
+            </button>
+          </div>
+        </div>
+      `;
+      openModal('backupModal');
+    }
+
+    function showInlineResetConfirm() {
+      const area = document.getElementById('resetConfirmArea');
+      if (!area) return;
+      area.innerHTML = `
+        <div class="flex flex-wrap items-center gap-2 pt-1">
+          <span class="text-xs font-extrabold text-rose-950">क्या आप वाकई रीसेट करना चाहते हैं?</span>
+          <button onclick="executeSampleReset()" class="px-3.5 py-1.5 rounded-lg bg-rose-700 text-white font-extrabold text-xs">हाँ, रीसेट करें</button>
+          <button onclick="openBackupModal()" class="px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 font-bold text-xs">नहीं</button>
+        </div>
+      `;
+    }
+
+    function executeSampleReset() {
+      appState = createInitialState();
+      saveState(true);
+      closeModal('backupModal');
+      renderTabs();
+      renderApp();
+      showToast('MGGS AARNI का मूल सैंपल डेटा पुनः लोड कर दिया गया है!');
+    }
+
+    function exportJsonBackup() {
+      const s = appState.settings;
+      const fileName = `MDM_Register_${s.schoolNameEn.replace(/\s+/g, '_')}_${s.monthEn}_${s.session}.json`;
+      const jsonStr = JSON.stringify(appState, null, 2);
+      if (window.AndroidBridge && typeof window.AndroidBridge.saveFile === 'function') {
+        window.AndroidBridge.saveFile(fileName, jsonStr, 'application/json');
+        showToast('JSON बैकअप फोन के Downloads में सेव हो गया!');
+        return;
+      }
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('JSON बैकअप डाउनलोड प्रारंभ हो गया!');
+    }
+
+    function importJsonBackup(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          const base = createInitialState();
+          appState = {
+            ...base,
+            ...parsed,
+            settings: { ...base.settings, ...(parsed.settings || {}) },
+            milk: { ...base.milk, ...(parsed.milk || {}) },
+            poshahar15: { ...base.poshahar15, ...(parsed.poshahar15 || {}) },
+            poshahar68: { ...base.poshahar68, ...(parsed.poshahar68 || {}) },
+            khadyanna: { ...base.khadyanna, ...(parsed.khadyanna || {}) },
+            rashi: { ...base.rashi, ...(parsed.rashi || {}) },
+            mdcf: { ...base.mdcf, ...(parsed.mdcf || {}) }
+          };
+          saveState(true);
+          closeModal('backupModal');
+          renderTabs();
+          renderApp();
+          showToast('बैकअप फाइल सफलतापूर्वक रीस्टोर हो गई!');
+        } catch (err) {
+          showToast('अमान्य JSON फाइल! कृपया सही बैकअप चुनें।');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function exportCurrentCsv() {
+      const calc = computeAllRegisters();
+      const s = appState.settings;
+      let rows = [];
+      let fileName = `MDM_${appState.activeTab}_${s.schoolNameEn.replace(/\s+/g, '_')}.csv`;
+
+      if (appState.activeTab === 'milk') {
+        rows.push(['दिनांक', 'योग 1-5', 'योग 6-8', 'कुल लाभान्वित', 'पाउडर 1-5 (g)', 'पाउडर 6-8 (g)', 'कुल पाउडर (kg)', 'चीनी 1-5 (g)', 'चीनी 6-8 (g)', 'कुल चीनी (kg)', 'गत शेष (kg)', 'प्राप्त (kg)', 'शेष (kg)', 'चीनी राशि (₹)', 'गैस 1-5 (₹)', 'गैस 6-8 (₹)', 'कुल गैस (₹)']);
+        calc.milkRows.forEach((r) => {
+          rows.push([r.date, r.b, r.c, r.totStu, r.mGrams15, r.mGrams68, r.mKg, r.sGrams15, r.sGrams68, r.sKg, r.opening, r.received, r.closing, r.sugarRs, r.gas15Rs, r.gas68Rs, r.gasTotRs]);
+        });
+      } else if (appState.activeTab === 'poshahar15' || appState.activeTab === 'poshahar68') {
+        const sheet = appState.activeTab === 'poshahar15' ? calc.p15 : calc.p68;
+        rows.push(['दिनांक', 'वार', 'व्यंजन', 'बालक', 'बालिका', 'योग', 'गेहूँ प्रारं.', 'गेहूँ प्राप्त', 'गेहूँ उधार', 'गेहूँ कुल', 'गेहूँ व्यय', 'गेहूँ शेष', 'चावल प्रारं.', 'चावल प्राप्त', 'चावल उधार', 'चावल कुल', 'चावल व्यय', 'चावल शेष']);
+        sheet.rows.forEach((r) => {
+          rows.push([r.date, r.dayName, r.menu, r.boys, r.girls, r.totalStu, r.wOpen, r.wSup, r.wLoan, r.wAvail, r.wExp, r.wClose, r.rOpen, r.rSup, r.rLoan, r.rAvail, r.rExp, r.rClose]);
+        });
+      } else if (appState.activeTab === 'khadyanna') {
+        rows.push(['विद्यालय', 'नामांकन 1-5', 'नामांकन 6-8', 'कुल नामांकन', 'कार्य दिवस', 'गेहूँ 1-5 प्रारं.', 'गेहूँ 1-5 प्राप्त', 'गेहूँ 1-5 कुल', 'गेहूँ 1-5 व्यय', 'गेहूँ 1-5 शेष', 'चावल 1-5 प्रारं.', 'चावल 1-5 प्राप्त', 'चावल 1-5 कुल', 'चावल 1-5 व्यय', 'चावल 1-5 शेष', 'गेहूँ 6-8 प्रारं.', 'गेहूँ 6-8 प्राप्त', 'गेहूँ 6-8 कुल', 'गेहूँ 6-8 व्यय', 'गेहूँ 6-8 शेष', 'चावल 6-8 प्रारं.', 'चावल 6-8 प्राप्त', 'चावल 6-8 कुल', 'चावल 6-8 व्यय', 'चावल 6-8 शेष', 'लाभार्थी 1-5', 'लाभार्थी 6-8', 'कुल लाभार्थी']);
+        calc.nodalKhadyannaRows.forEach((r) => {
+          rows.push([r.name, r.enrol15, r.enrol68, r.enrolTot, r.days, r.w15Open, r.w15Rec, r.w15Avail, r.w15Exp, r.w15Close, r.r15Open, r.r15Rec, r.r15Avail, r.r15Exp, r.r15Close, r.w68Open, r.w68Rec, r.w68Avail, r.w68Exp, r.w68Close, r.r68Open, r.r68Rec, r.r68Avail, r.r68Exp, r.r68Close, r.ben15, r.ben68, r.benTot]);
+        });
+      } else {
+        rows.push(['विद्यालय', 'कुकिंग 1-5 प्रारं.', 'कुकिंग 1-5 प्राप्त', 'लाभार्थी 1-5', 'कुकिंग 1-5 व्यय', 'कुकिंग 1-5 शेष', 'कुकिंग 6-8 प्रारं.', 'कुकिंग 6-8 प्राप्त', 'लाभार्थी 6-8', 'कुकिंग 6-8 व्यय', 'कुकिंग 6-8 शेष', 'कुल शेष (1-8)']);
+        calc.cookingRows.forEach((r) => {
+          rows.push([r.name, r.open15, r.rec15, r.ben15, r.exp15, r.close15, r.open68, r.rec68, r.ben68, r.exp68, r.close68, r.combinedClose]);
+        });
+      }
+
+      const csvContent =
+        '\uFEFF' +
+        rows
+          .map((row) =>
+            row
+              .map((cell) => `"${String(cell ?? '').replace(/"/g, '""')}"`)
+              .join(',')
+          )
+          .join('\n');
+
+      if (window.AndroidBridge && typeof window.AndroidBridge.saveFile === 'function') {
+        window.AndroidBridge.saveFile(fileName, csvContent, 'text/csv');
+        showToast('CSV एक्सेल फाइल फोन के Downloads में सेव हो गई!');
+        return;
+      }
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('CSV एक्सेल फाइल डाउनलोड हो गई!');
+    }
+
+    /**
+     * ============================================================================
+     * INITIALIZATION
+     * ============================================================================
+     */
+    
+    // Android APK Native Bridge Support (Print, CSV & JSON Download)
+    window.print = (function(origPrint) {
+      return function() {
+        if (window.AndroidBridge && typeof window.AndroidBridge.printPage === 'function') {
+          window.AndroidBridge.printPage();
+        } else if (origPrint) {
+          origPrint.call(window);
+        }
+      };
+    })(window.print);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeaderSubtitle();
+      renderTabs();
+      renderApp();
+    });
+  </script>
+</body>
+</html>
